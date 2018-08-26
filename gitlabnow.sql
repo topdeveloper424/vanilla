@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 26, 2018 at 04:34 PM
+-- Generation Time: Aug 26, 2018 at 05:47 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_activity` (
   KEY `mptt_left` (`mptt_left`),
   KEY `mptt_right` (`mptt_right`),
   KEY `hide_sitewide` (`hide_sitewide`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `wp_bp_activity`
@@ -73,7 +73,9 @@ INSERT INTO `wp_bp_activity` (`id`, `user_id`, `component`, `type`, `action`, `c
 (14, 3, 'profile', 'new_avatar', '<a href="http://localhost:10086/members/harry/" title="harry benit">harry benit</a> changed their profile picture', '', 'http://localhost:10086/members/harry/', '', '', '2018-08-26 13:23:34', 0, 0, 0),
 (15, 3, 'activity', 'activity_update', '<a href="http://localhost:10086/members/harry/" title="harry benit">harry benit</a> posted an update', 'Hi, i am a harry\nhelp me!', 'http://localhost:10086/members/harry/', '', '', '2018-08-26 13:38:51', 0, 0, 0),
 (16, 1, 'groups', 'created_group', '<a href="http://localhost:10086/members/admin/" title="ming ming">ming ming</a> created the group <a href="http://localhost:10086/groups/freelancer/">Freelancer</a>', '', 'http://localhost:10086/members/admin/', '2', '', '2018-08-26 14:05:43', 0, 0, 0),
-(17, 4, 'profile', 'new_avatar', '<a href="http://localhost:10086/members/adrian/" title="Adrian">Adrian</a> changed their profile picture', '', 'http://localhost:10086/members/adrian/', '', '', '2018-08-26 14:32:18', 0, 0, 0);
+(17, 4, 'profile', 'new_avatar', '<a href="http://localhost:10086/members/adrian/" title="Adrian">Adrian</a> changed their profile picture', '', 'http://localhost:10086/members/adrian/', '', '', '2018-08-26 14:32:18', 0, 0, 0),
+(18, 4, 'friends', 'friendship_created', '<a href="http://localhost:10086/members/adrian/" title="Adrian">Adrian</a> and <a href="http://localhost:10086/members/admin/" title="ming ming">ming ming</a> are now friends', '', 'http://localhost:10086/members/admin/', '3', '1', '2018-08-26 15:03:58', 0, 0, 0),
+(19, 1, 'friends', 'friendship_created', '<a href="http://localhost:10086/members/admin/" title="ming ming">ming ming</a> and <a href="http://localhost:10086/members/adrian/" title="Adrian">Adrian</a> are now friends', '', 'http://localhost:10086/members/admin/', '3', '4', '2018-08-26 15:03:58', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -157,8 +159,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_friends` (
 
 INSERT INTO `wp_bp_friends` (`id`, `initiator_user_id`, `friend_user_id`, `is_confirmed`, `is_limited`, `date_created`) VALUES
 (1, 1, 2, 0, 0, '2018-08-26 11:05:05'),
-(2, 1, 3, 0, 0, '2018-08-26 14:06:32'),
-(3, 4, 1, 0, 0, '2018-08-26 14:32:57');
+(2, 1, 3, 0, 0, '2018-08-26 14:06:32');
 
 -- --------------------------------------------------------
 
@@ -358,7 +359,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_notifications` (
   KEY `component_name` (`component_name`),
   KEY `component_action` (`component_action`),
   KEY `useritem` (`user_id`,`is_new`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `wp_bp_notifications`
@@ -367,7 +368,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_notifications` (
 INSERT INTO `wp_bp_notifications` (`id`, `user_id`, `item_id`, `secondary_item_id`, `component_name`, `component_action`, `date_notified`, `is_new`) VALUES
 (1, 2, 1, 0, 'friends', 'friendship_request', '2018-08-26 11:05:05', 1),
 (3, 3, 1, 0, 'friends', 'friendship_request', '2018-08-26 14:06:32', 1),
-(4, 1, 4, 0, 'friends', 'friendship_request', '2018-08-26 14:32:57', 1);
+(5, 4, 1, 0, 'friends', 'friendship_accepted', '2018-08-26 15:03:58', 1);
 
 -- --------------------------------------------------------
 
@@ -749,7 +750,7 @@ INSERT INTO `wp_options` (`option_id`, `blog_id`, `option_name`, `option_value`,
 (101, 0, 'widget_meta', 'a:3:{i:2;a:1:{s:5:"title";s:0:"";}i:3;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
 (102, 0, 'sidebars_widgets', 'a:7:{s:19:"wp_inactive_widgets";a:15:{i:0;s:10:"calendar-2";i:1;s:6:"text-2";i:2;s:5:"rss-2";i:3;s:11:"tag_cloud-2";i:4;s:10:"nav_menu-2";i:5;s:24:"bp_core_members_widget-2";i:6;s:32:"bp_core_recently_active_widget-2";i:7;s:18:"bp_groups_widget-2";i:8;s:28:"bp_follow_following_widget-2";i:9;s:8:"search-2";i:10;s:14:"recent-posts-2";i:11;s:17:"recent-comments-2";i:12;s:10:"archives-2";i:13;s:12:"categories-2";i:14;s:6:"meta-2";}s:9:"sidebar-1";a:5:{i:0;s:10:"calendar-3";i:1;s:28:"bp_core_whos_online_widget-2";i:2;s:18:"bp_groups_widget-3";i:3;s:32:"bp_core_recently_active_widget-3";i:4;s:28:"bp_follow_following_widget-3";}s:24:"first-footer-widget-area";a:1:{i:0;s:7:"links-2";}s:25:"second-footer-widget-area";a:1:{i:0;s:6:"meta-3";}s:24:"third-footer-widget-area";a:1:{i:0;s:15:"social-widget-3";}s:25:"fourth-footer-widget-area";a:0:{}s:13:"array_version";i:3;}', 'yes'),
 (103, 0, 'cron', 'a:4:{i:1535275599;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1535275602;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1535280351;a:1:{s:8:"do_pings";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:2:{s:8:"schedule";b:0;s:4:"args";a:0:{}}}}s:7:"version";i:2;}', 'yes'),
-(104, 0, '_transient_doing_cron', '1535293945', 'yes'),
+(104, 0, '_transient_doing_cron', '1535297282', 'yes'),
 (105, 0, 'widget_pages', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
 (106, 0, 'widget_calendar', 'a:3:{i:2;a:0:{}i:3;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
 (107, 0, 'widget_links', 'a:2:{i:2;a:5:{s:6:"images";i:0;s:4:"name";i:1;s:11:"description";i:0;s:6:"rating";i:1;s:8:"category";i:0;}s:12:"_multiwidget";i:1;}', 'yes'),
@@ -786,7 +787,7 @@ INSERT INTO `wp_options` (`option_id`, `blog_id`, `option_name`, `option_value`,
 (145, 0, 'template_root', '/plugins/buddypress/bp-themes', 'yes'),
 (146, 0, 'stylesheet_root', '/plugins/buddypress/bp-themes', 'yes'),
 (147, 0, 'current_theme', 'BuddyPress Default', 'yes'),
-(148, 0, 'theme_mods_bp-default', 'a:7:{i:0;b:0;s:16:"background_image";s:0:"";s:22:"background_image_thumb";s:0:"";s:17:"background_repeat";s:6:"repeat";s:21:"background_position_x";s:4:"left";s:21:"background_attachment";s:6:"scroll";s:16:"background_color";s:6:"c1c1c1";}', 'yes'),
+(148, 0, 'theme_mods_bp-default', 'a:7:{i:0;b:0;s:16:"background_image";s:0:"";s:22:"background_image_thumb";s:0:"";s:17:"background_repeat";s:6:"repeat";s:21:"background_position_x";s:4:"left";s:21:"background_attachment";s:6:"scroll";s:16:"background_color";s:6:"ffffff";}', 'yes'),
 (149, 0, 'bp-db-version', '3820', 'yes'),
 (150, 0, 'widget_bp_core_members_widget', 'a:2:{i:2;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (151, 0, 'widget_bp_core_whos_online_widget', 'a:2:{i:2;a:2:{s:5:"title";s:12:"Who''s Online";s:11:"max_members";s:2:"15";}s:12:"_multiwidget";i:1;}', 'yes'),
@@ -938,7 +939,7 @@ CREATE TABLE IF NOT EXISTS `wp_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data for table `wp_posts`
@@ -984,7 +985,8 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (37, 1, '2018-08-26 14:21:18', '2018-08-26 14:21:18', '', 'Activate', '', 'inherit', 'open', 'open', '', '11-revision-2', '', '', '2018-08-26 14:21:18', '2018-08-26 14:21:18', '', 11, 'http://localhost:10086/archives/37', 0, 'revision', '', 0),
 (38, 1, '2018-08-26 14:19:23', '2018-08-26 14:19:23', '', 'Discussion Forums', '', 'inherit', 'open', 'open', '', '28-revision-4', '', '', '2018-08-26 14:19:23', '2018-08-26 14:19:23', '', 28, 'http://localhost:10086/archives/38', 0, 'revision', '', 0),
 (39, 1, '2018-08-26 14:25:59', '2018-08-26 14:25:59', '', 'Forums', '', 'inherit', 'open', 'open', '', '28-revision-5', '', '', '2018-08-26 14:25:59', '2018-08-26 14:25:59', '', 28, 'http://localhost:10086/archives/39', 0, 'revision', '', 0),
-(40, 1, '2018-08-26 14:26:26', '2018-08-26 14:26:26', '', 'Forums', '', 'inherit', 'open', 'open', '', '28-revision-6', '', '', '2018-08-26 14:26:26', '2018-08-26 14:26:26', '', 28, 'http://localhost:10086/archives/40', 0, 'revision', '', 0);
+(40, 1, '2018-08-26 14:26:26', '2018-08-26 14:26:26', '', 'Forums', '', 'inherit', 'open', 'open', '', '28-revision-6', '', '', '2018-08-26 14:26:26', '2018-08-26 14:26:26', '', 28, 'http://localhost:10086/archives/40', 0, 'revision', '', 0),
+(41, 4, '2018-08-26 14:43:08', '0000-00-00 00:00:00', '', 'Auto Draft', '', 'auto-draft', 'open', 'open', '', '', '', '', '2018-08-26 14:43:08', '0000-00-00 00:00:00', '', 0, 'http://localhost:10086/?p=41', 0, 'post', '', 0);
 
 -- --------------------------------------------------------
 
@@ -1078,7 +1080,7 @@ CREATE TABLE IF NOT EXISTS `wp_usermeta` (
   PRIMARY KEY (`umeta_id`),
   KEY `user_id` (`user_id`),
   KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=79 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=82 ;
 
 --
 -- Dumping data for table `wp_usermeta`
@@ -1103,7 +1105,7 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (16, 1, 'wp_dashboard_quick_press_last_post_id', '3'),
 (17, 1, 'closedpostboxes_dashboard', 'a:0:{}'),
 (18, 1, 'metaboxhidden_dashboard', 'a:0:{}'),
-(19, 1, 'last_activity', '2018-08-26 14:27:50'),
+(19, 1, 'last_activity', '2018-08-26 15:26:45'),
 (20, 1, 'bp_latest_update', 'a:2:{s:2:"id";s:1:"2";s:7:"content";s:18:"Hi to everyone...?";}'),
 (21, 1, 'bp_favorite_activities', 'a:1:{i:0;s:1:"2";}'),
 (22, 1, 'wp_user-settings', 'm5=o&m1=o&m2=o&m3=c&m4=o&editor=tinymce'),
@@ -1162,7 +1164,10 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (75, 4, 'jabber', ''),
 (76, 4, 'wp_capabilities', 'a:1:{s:11:"contributor";s:1:"1";}'),
 (77, 4, 'wp_user_level', '1'),
-(78, 4, 'last_activity', '2018-08-26 14:31:07');
+(78, 4, 'last_activity', '2018-08-26 14:43:21'),
+(79, 4, 'wp_dashboard_quick_press_last_post_id', '41'),
+(80, 4, 'total_friend_count', '0'),
+(81, 1, 'total_friend_count', '0');
 
 -- --------------------------------------------------------
 
