@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 26, 2018 at 02:20 PM
+-- Generation Time: Aug 26, 2018 at 04:34 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_activity` (
   KEY `mptt_left` (`mptt_left`),
   KEY `mptt_right` (`mptt_right`),
   KEY `hide_sitewide` (`hide_sitewide`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `wp_bp_activity`
@@ -69,7 +69,11 @@ INSERT INTO `wp_bp_activity` (`id`, `user_id`, `component`, `type`, `action`, `c
 (10, 2, 'activity', 'activity_update', '<a href="http://localhost:10086/members/won/" title="won">won</a> posted an update', 'Hi,  I like this site.', 'http://localhost:10086/members/won/', '', '', '2018-08-26 10:58:38', 0, 0, 0),
 (11, 2, 'profile', 'new_avatar', '<a href="http://localhost:10086/members/won/" title="won">won</a> changed their profile picture', '', 'http://localhost:10086/members/won/', '', '', '2018-08-26 10:59:56', 0, 0, 0),
 (12, 2, 'groups', 'joined_group', '<a href="http://localhost:10086/members/won/" title="won">won</a> joined the group <a href="http://localhost:10086/groups/support/">Support</a>', '', 'http://localhost:10086/members/won/', '1', '', '2018-08-26 11:05:58', 1, 0, 0),
-(13, 1, 'activity', 'video_post', '<a href="http://localhost:10086/members/admin/" title="ming ming">ming ming</a>', '\n[bpfb_video]https://www.youtube.com/watch?v=BZcZopuYHc8[/bpfb_video]', 'http://localhost:10086/members/admin/', '', '', '2018-08-26 11:45:06', 0, 0, 0);
+(13, 1, 'activity', 'video_post', '<a href="http://localhost:10086/members/admin/" title="ming ming">ming ming</a>', '\n[bpfb_video]https://www.youtube.com/watch?v=BZcZopuYHc8[/bpfb_video]', 'http://localhost:10086/members/admin/', '', '', '2018-08-26 11:45:06', 0, 0, 0),
+(14, 3, 'profile', 'new_avatar', '<a href="http://localhost:10086/members/harry/" title="harry benit">harry benit</a> changed their profile picture', '', 'http://localhost:10086/members/harry/', '', '', '2018-08-26 13:23:34', 0, 0, 0),
+(15, 3, 'activity', 'activity_update', '<a href="http://localhost:10086/members/harry/" title="harry benit">harry benit</a> posted an update', 'Hi, i am a harry\nhelp me!', 'http://localhost:10086/members/harry/', '', '', '2018-08-26 13:38:51', 0, 0, 0),
+(16, 1, 'groups', 'created_group', '<a href="http://localhost:10086/members/admin/" title="ming ming">ming ming</a> created the group <a href="http://localhost:10086/groups/freelancer/">Freelancer</a>', '', 'http://localhost:10086/members/admin/', '2', '', '2018-08-26 14:05:43', 0, 0, 0),
+(17, 4, 'profile', 'new_avatar', '<a href="http://localhost:10086/members/adrian/" title="Adrian">Adrian</a> changed their profile picture', '', 'http://localhost:10086/members/adrian/', '', '', '2018-08-26 14:32:18', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -85,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_activity_meta` (
   PRIMARY KEY (`id`),
   KEY `activity_id` (`activity_id`),
   KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `wp_bp_activity_meta`
@@ -105,7 +109,8 @@ INSERT INTO `wp_bp_activity_meta` (`id`, `activity_id`, `meta_key`, `meta_value`
 (11, 9, 'activityprivacy', 'public'),
 (12, 10, 'activityprivacy', 'public'),
 (13, 13, 'bpfb_blog_id', '1'),
-(14, 13, 'activityprivacy', 'public');
+(14, 13, 'activityprivacy', 'public'),
+(15, 15, 'activityprivacy', 'public');
 
 -- --------------------------------------------------------
 
@@ -144,14 +149,16 @@ CREATE TABLE IF NOT EXISTS `wp_bp_friends` (
   PRIMARY KEY (`id`),
   KEY `initiator_user_id` (`initiator_user_id`),
   KEY `friend_user_id` (`friend_user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `wp_bp_friends`
 --
 
 INSERT INTO `wp_bp_friends` (`id`, `initiator_user_id`, `friend_user_id`, `is_confirmed`, `is_limited`, `date_created`) VALUES
-(1, 1, 2, 0, 0, '2018-08-26 11:05:05');
+(1, 1, 2, 0, 0, '2018-08-26 11:05:05'),
+(2, 1, 3, 0, 0, '2018-08-26 14:06:32'),
+(3, 4, 1, 0, 0, '2018-08-26 14:32:57');
 
 -- --------------------------------------------------------
 
@@ -171,14 +178,15 @@ CREATE TABLE IF NOT EXISTS `wp_bp_groups` (
   PRIMARY KEY (`id`),
   KEY `creator_id` (`creator_id`),
   KEY `status` (`status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `wp_bp_groups`
 --
 
 INSERT INTO `wp_bp_groups` (`id`, `creator_id`, `name`, `slug`, `description`, `status`, `enable_forum`, `date_created`) VALUES
-(1, 1, 'Support', 'support', 'This is the official support group of this Site. You can join this group to get updates on support related issues.', 'public', 0, '2018-08-26 10:18:42');
+(1, 1, 'Support', 'support', 'This is the official support group of this Site. You can join this group to get updates on support related issues.', 'public', 0, '2018-08-26 10:18:42'),
+(2, 1, 'Freelancer', 'freelancer', 'If you are freelancer, contact us !', 'public', 0, '2018-08-26 14:04:57');
 
 -- --------------------------------------------------------
 
@@ -194,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_groups_groupmeta` (
   PRIMARY KEY (`id`),
   KEY `group_id` (`group_id`),
   KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `wp_bp_groups_groupmeta`
@@ -203,7 +211,10 @@ CREATE TABLE IF NOT EXISTS `wp_bp_groups_groupmeta` (
 INSERT INTO `wp_bp_groups_groupmeta` (`id`, `group_id`, `meta_key`, `meta_value`) VALUES
 (1, 1, 'last_activity', '2018-08-26 11:05:58'),
 (2, 1, 'total_member_count', '2'),
-(3, 1, 'invite_status', 'members');
+(3, 1, 'invite_status', 'members'),
+(4, 2, 'last_activity', '2018-08-26 14:05:08'),
+(5, 2, 'total_member_count', '1'),
+(6, 2, 'invite_status', 'members');
 
 -- --------------------------------------------------------
 
@@ -231,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_groups_members` (
   KEY `user_id` (`user_id`),
   KEY `inviter_id` (`inviter_id`),
   KEY `is_confirmed` (`is_confirmed`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `wp_bp_groups_members`
@@ -239,7 +250,8 @@ CREATE TABLE IF NOT EXISTS `wp_bp_groups_members` (
 
 INSERT INTO `wp_bp_groups_members` (`id`, `group_id`, `user_id`, `inviter_id`, `is_admin`, `is_mod`, `user_title`, `date_modified`, `comments`, `is_confirmed`, `is_banned`, `invite_sent`) VALUES
 (1, 1, 1, 0, 1, 0, 'Group Admin', '2018-08-26 10:18:42', '', 1, 0, 0),
-(2, 1, 2, 0, 0, 0, '', '2018-08-26 11:05:58', '', 1, 0, 0);
+(2, 1, 2, 0, 0, 0, '', '2018-08-26 11:05:58', '', 1, 0, 0),
+(3, 2, 1, 0, 1, 0, 'Group Admin', '2018-08-26 14:04:57', '', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -346,14 +358,16 @@ CREATE TABLE IF NOT EXISTS `wp_bp_notifications` (
   KEY `component_name` (`component_name`),
   KEY `component_action` (`component_action`),
   KEY `useritem` (`user_id`,`is_new`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `wp_bp_notifications`
 --
 
 INSERT INTO `wp_bp_notifications` (`id`, `user_id`, `item_id`, `secondary_item_id`, `component_name`, `component_action`, `date_notified`, `is_new`) VALUES
-(1, 2, 1, 0, 'friends', 'friendship_request', '2018-08-26 11:05:05', 1);
+(1, 2, 1, 0, 'friends', 'friendship_request', '2018-08-26 11:05:05', 1),
+(3, 3, 1, 0, 'friends', 'friendship_request', '2018-08-26 14:06:32', 1),
+(4, 1, 4, 0, 'friends', 'friendship_request', '2018-08-26 14:32:57', 1);
 
 -- --------------------------------------------------------
 
@@ -368,14 +382,15 @@ CREATE TABLE IF NOT EXISTS `wp_bp_user_blogs` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `blog_id` (`blog_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `wp_bp_user_blogs`
 --
 
 INSERT INTO `wp_bp_user_blogs` (`id`, `user_id`, `blog_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -400,7 +415,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_user_blogs_blogmeta` (
 INSERT INTO `wp_bp_user_blogs_blogmeta` (`id`, `blog_id`, `meta_key`, `meta_value`) VALUES
 (1, 1, 'name', 'vanilla'),
 (2, 1, 'description', 'Just Social Website'),
-(3, 1, 'last_activity', '2018-08-26 10:52:35');
+(3, 1, 'last_activity', '2018-08-26 14:30:56');
 
 -- --------------------------------------------------------
 
@@ -417,7 +432,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_xprofile_data` (
   PRIMARY KEY (`id`),
   KEY `field_id` (`field_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `wp_bp_xprofile_data`
@@ -431,7 +446,15 @@ INSERT INTO `wp_bp_xprofile_data` (`id`, `field_id`, `user_id`, `value`, `last_u
 (5, 1, 2, 'won', '2018-08-26 10:59:08'),
 (6, 2, 2, '1993-11-12 00:00:00', '2018-08-26 10:59:08'),
 (7, 3, 2, 'arts Books', '2018-08-26 10:59:36'),
-(8, 4, 2, 'galina', '2018-08-26 10:59:36');
+(8, 4, 2, 'galina', '2018-08-26 10:59:36'),
+(9, 1, 3, 'harry benit', '2018-08-26 13:22:13'),
+(10, 2, 3, '1995-04-04 00:00:00', '2018-08-26 13:22:13'),
+(11, 3, 3, 'Arts Books', '2018-08-26 13:22:49'),
+(12, 4, 3, 'Mingming', '2018-08-26 13:22:49'),
+(13, 1, 4, 'Adrian', '2018-08-26 14:31:29'),
+(14, 2, 4, '1993-07-10 00:00:00', '2018-08-26 14:31:29'),
+(15, 3, 4, 'Business Books', '2018-08-26 14:31:51'),
+(16, 4, 4, 'Jackson', '2018-08-26 14:31:51');
 
 -- --------------------------------------------------------
 
@@ -555,14 +578,15 @@ CREATE TABLE IF NOT EXISTS `wp_comments` (
   KEY `comment_approved_date_gmt` (`comment_approved`,`comment_date_gmt`),
   KEY `comment_date_gmt` (`comment_date_gmt`),
   KEY `comment_parent` (`comment_parent`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `wp_comments`
 --
 
 INSERT INTO `wp_comments` (`comment_ID`, `comment_post_ID`, `comment_author`, `comment_author_email`, `comment_author_url`, `comment_author_IP`, `comment_date`, `comment_date_gmt`, `comment_content`, `comment_karma`, `comment_approved`, `comment_agent`, `comment_type`, `comment_parent`, `user_id`) VALUES
-(1, 1, 'Mr WordPress', '', 'http://wordpress.org/', '', '2018-08-26 09:26:36', '2018-08-26 09:26:36', 'Hi, this is a comment.<br />To delete a comment, just log in and view the post&#039;s comments. There you will have the option to edit or delete them.', 0, '1', '', '', 0, 0);
+(1, 1, 'Mr WordPress', '', 'http://wordpress.org/', '', '2018-08-26 09:26:36', '2018-08-26 09:26:36', 'Hi, this is a comment.<br />To delete a comment, just log in and view the post&#039;s comments. There you will have the option to edit or delete them.', 0, '1', '', '', 0, 0),
+(2, 28, 'ming ming', 'mingOK424@hotmail.com', '', '127.0.0.1', '2018-08-26 14:20:18', '2018-08-26 14:20:18', 'What is buddypress?', 0, '1', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.15 Safari/537.36', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -615,7 +639,7 @@ CREATE TABLE IF NOT EXISTS `wp_options` (
   `autoload` varchar(20) NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=190 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=240 ;
 
 --
 -- Dumping data for table `wp_options`
@@ -650,14 +674,14 @@ INSERT INTO `wp_options` (`option_id`, `blog_id`, `option_name`, `option_value`,
 (26, 0, 'links_recently_updated_prepend', '<em>', 'yes'),
 (27, 0, 'links_recently_updated_append', '</em>', 'yes'),
 (28, 0, 'links_recently_updated_time', '120', 'yes'),
-(29, 0, 'comment_moderation', '0', 'yes'),
+(29, 0, 'comment_moderation', '', 'yes'),
 (30, 0, 'moderation_notify', '1', 'yes'),
 (31, 0, 'permalink_structure', '/archives/%post_id%', 'yes'),
 (32, 0, 'gzipcompression', '0', 'yes'),
 (33, 0, 'hack_file', '0', 'yes'),
 (34, 0, 'blog_charset', 'UTF-8', 'yes'),
 (35, 0, 'moderation_keys', '', 'no'),
-(36, 0, 'active_plugins', 'a:12:{i:0;s:39:"block-post/bp-activity-block-loader.php";i:1;s:45:"bp-automatic-friends/bp-automatic-friends.php";i:2;s:39:"bp-you-are-blocked/buddypress-block.php";i:3;s:33:"buddypress-activity-plus/bpfb.php";i:4;s:38:"buddypress-activity-privacy/loader.php";i:5;s:35:"buddypress-followers-1.2/loader.php";i:6;s:46:"buddypress-global/buddypress-global-search.php";i:7;s:34:"buddypress-like/bp-like-loader.php";i:8;s:24:"buddypress/bp-loader.php";i:9;s:60:"buddypress_FeaturedActivity/buddypress_featured_activity.php";i:10;s:19:"hashtags/loader.php";i:11;s:39:"iw-magnific-popup/iw-magnific-popup.php";}', 'yes'),
+(36, 0, 'active_plugins', 'a:15:{i:0;s:39:"block-post/bp-activity-block-loader.php";i:1;s:45:"bp-automatic-friends/bp-automatic-friends.php";i:2;s:39:"bp-you-are-blocked/buddypress-block.php";i:3;s:33:"buddypress-activity-plus/bpfb.php";i:4;s:38:"buddypress-activity-privacy/loader.php";i:5;s:35:"buddypress-followers-1.2/loader.php";i:6;s:46:"buddypress-global/buddypress-global-search.php";i:7;s:34:"buddypress-like/bp-like-loader.php";i:8;s:24:"buddypress/bp-loader.php";i:9;s:60:"buddypress_FeaturedActivity/buddypress_featured_activity.php";i:10;s:49:"buddypress_recommended/buddypress_recommended.php";i:11;s:19:"hashtags/loader.php";i:12;s:9:"hello.php";i:13;s:39:"iw-magnific-popup/iw-magnific-popup.php";i:14;s:37:"social-media-widget/social-widget.php";}', 'yes'),
 (37, 0, 'home', 'http://localhost:10086', 'yes'),
 (38, 0, 'category_base', '', 'yes'),
 (39, 0, 'ping_sites', 'http://rpc.pingomatic.com/', 'yes'),
@@ -665,12 +689,12 @@ INSERT INTO `wp_options` (`option_id`, `blog_id`, `option_name`, `option_value`,
 (41, 0, 'comment_max_links', '2', 'yes'),
 (42, 0, 'gmt_offset', '0', 'yes'),
 (43, 0, 'default_email_category', '1', 'yes'),
-(44, 0, 'recently_edited', '', 'no'),
+(44, 0, 'recently_edited', 'a:2:{i:0;s:84:"D:\\xampp\\htdocs\\vanilla/wp-content/plugins/buddypress/bp-themes/bp-default/style.css";i:2;s:0:"";}', 'no'),
 (45, 0, 'template', 'bp-default', 'yes'),
 (46, 0, 'stylesheet', 'bp-default', 'yes'),
 (47, 0, 'comment_whitelist', '1', 'yes'),
 (48, 0, 'blacklist_keys', '', 'no'),
-(49, 0, 'comment_registration', '0', 'yes'),
+(49, 0, 'comment_registration', '', 'yes'),
 (50, 0, 'rss_language', 'en', 'yes'),
 (51, 0, 'html_type', 'text/html', 'yes'),
 (52, 0, 'use_trackback', '0', 'yes'),
@@ -698,11 +722,11 @@ INSERT INTO `wp_options` (`option_id`, `blog_id`, `option_name`, `option_value`,
 (74, 0, 'image_default_link_type', 'file', 'yes'),
 (75, 0, 'image_default_size', '', 'yes'),
 (76, 0, 'image_default_align', '', 'yes'),
-(77, 0, 'close_comments_for_old_posts', '0', 'yes'),
+(77, 0, 'close_comments_for_old_posts', '1', 'yes'),
 (78, 0, 'close_comments_days_old', '14', 'yes'),
 (79, 0, 'thread_comments', '1', 'yes'),
 (80, 0, 'thread_comments_depth', '5', 'yes'),
-(81, 0, 'page_comments', '0', 'yes'),
+(81, 0, 'page_comments', '', 'yes'),
 (82, 0, 'comments_per_page', '50', 'yes'),
 (83, 0, 'default_comments_page', 'newest', 'yes'),
 (84, 0, 'comment_order', 'asc', 'yes'),
@@ -722,19 +746,18 @@ INSERT INTO `wp_options` (`option_id`, `blog_id`, `option_name`, `option_value`,
 (98, 0, 'widget_recent-posts', 'a:2:{i:2;a:2:{s:5:"title";s:0:"";s:6:"number";i:5;}s:12:"_multiwidget";i:1;}', 'yes'),
 (99, 0, 'widget_recent-comments', 'a:2:{i:2;a:2:{s:5:"title";s:0:"";s:6:"number";i:5;}s:12:"_multiwidget";i:1;}', 'yes'),
 (100, 0, 'widget_archives', 'a:2:{i:2;a:3:{s:5:"title";s:0:"";s:5:"count";i:0;s:8:"dropdown";i:0;}s:12:"_multiwidget";i:1;}', 'yes'),
-(101, 0, 'widget_meta', 'a:2:{i:2;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
-(102, 0, 'sidebars_widgets', 'a:7:{s:19:"wp_inactive_widgets";a:16:{i:0;s:10:"calendar-2";i:1;s:7:"links-2";i:2;s:6:"text-2";i:3;s:5:"rss-2";i:4;s:11:"tag_cloud-2";i:5;s:10:"nav_menu-2";i:6;s:24:"bp_core_members_widget-2";i:7;s:32:"bp_core_recently_active_widget-2";i:8;s:18:"bp_groups_widget-2";i:9;s:28:"bp_follow_following_widget-2";i:10;s:8:"search-2";i:11;s:14:"recent-posts-2";i:12;s:17:"recent-comments-2";i:13;s:10:"archives-2";i:14;s:12:"categories-2";i:15;s:6:"meta-2";}s:9:"sidebar-1";a:3:{i:0;s:28:"bp_core_whos_online_widget-2";i:1;s:18:"bp_groups_widget-3";i:2;s:32:"bp_core_recently_active_widget-3";}s:24:"first-footer-widget-area";a:0:{}s:25:"second-footer-widget-area";a:0:{}s:24:"third-footer-widget-area";a:0:{}s:25:"fourth-footer-widget-area";a:0:{}s:13:"array_version";i:3;}', 'yes'),
+(101, 0, 'widget_meta', 'a:3:{i:2;a:1:{s:5:"title";s:0:"";}i:3;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
+(102, 0, 'sidebars_widgets', 'a:7:{s:19:"wp_inactive_widgets";a:15:{i:0;s:10:"calendar-2";i:1;s:6:"text-2";i:2;s:5:"rss-2";i:3;s:11:"tag_cloud-2";i:4;s:10:"nav_menu-2";i:5;s:24:"bp_core_members_widget-2";i:6;s:32:"bp_core_recently_active_widget-2";i:7;s:18:"bp_groups_widget-2";i:8;s:28:"bp_follow_following_widget-2";i:9;s:8:"search-2";i:10;s:14:"recent-posts-2";i:11;s:17:"recent-comments-2";i:12;s:10:"archives-2";i:13;s:12:"categories-2";i:14;s:6:"meta-2";}s:9:"sidebar-1";a:5:{i:0;s:10:"calendar-3";i:1;s:28:"bp_core_whos_online_widget-2";i:2;s:18:"bp_groups_widget-3";i:3;s:32:"bp_core_recently_active_widget-3";i:4;s:28:"bp_follow_following_widget-3";}s:24:"first-footer-widget-area";a:1:{i:0;s:7:"links-2";}s:25:"second-footer-widget-area";a:1:{i:0;s:6:"meta-3";}s:24:"third-footer-widget-area";a:1:{i:0;s:15:"social-widget-3";}s:25:"fourth-footer-widget-area";a:0:{}s:13:"array_version";i:3;}', 'yes'),
 (103, 0, 'cron', 'a:4:{i:1535275599;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1535275602;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1535280351;a:1:{s:8:"do_pings";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:2:{s:8:"schedule";b:0;s:4:"args";a:0:{}}}}s:7:"version";i:2;}', 'yes'),
-(104, 0, '_transient_doing_cron', '1535285842', 'yes'),
+(104, 0, '_transient_doing_cron', '1535293945', 'yes'),
 (105, 0, 'widget_pages', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
-(106, 0, 'widget_calendar', 'a:2:{i:2;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
-(107, 0, 'widget_links', 'a:2:{i:2;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
+(106, 0, 'widget_calendar', 'a:3:{i:2;a:0:{}i:3;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
+(107, 0, 'widget_links', 'a:2:{i:2;a:5:{s:6:"images";i:0;s:4:"name";i:1;s:11:"description";i:0;s:6:"rating";i:1;s:8:"category";i:0;}s:12:"_multiwidget";i:1;}', 'yes'),
 (108, 0, 'widget_tag_cloud', 'a:2:{i:2;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (109, 0, 'widget_nav_menu', 'a:2:{i:2;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (110, 0, 'widget_widget_twentyeleven_ephemera', 'a:2:{i:2;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
-(111, 0, '_site_transient_update_core', 'O:8:"stdClass":3:{s:7:"updates";a:1:{i:0;O:8:"stdClass":9:{s:8:"response";s:7:"upgrade";s:8:"download";s:58:"http://downloads.wordpress.org/release/wordpress-4.9.8.zip";s:6:"locale";s:5:"en_US";s:8:"packages";O:8:"stdClass":4:{s:4:"full";s:58:"http://downloads.wordpress.org/release/wordpress-4.9.8.zip";s:10:"no_content";s:69:"http://downloads.wordpress.org/release/wordpress-4.9.8-no-content.zip";s:11:"new_bundled";s:70:"http://downloads.wordpress.org/release/wordpress-4.9.8-new-bundled.zip";s:7:"partial";b:0;}s:7:"current";s:5:"4.9.8";s:11:"php_version";s:5:"5.2.4";s:13:"mysql_version";s:3:"5.0";s:11:"new_bundled";s:3:"4.7";s:15:"partial_version";s:0:"";}}s:12:"last_checked";i:1535275603;s:15:"version_checked";s:5:"3.2.1";}', 'yes'),
-(112, 0, '_site_transient_update_plugins', 'O:8:"stdClass":3:{s:12:"last_checked";i:1535283601;s:7:"checked";a:16:{s:19:"akismet/akismet.php";s:5:"2.5.3";s:39:"block-post/bp-activity-block-loader.php";s:5:"0.5.0";s:39:"bp-you-are-blocked/buddypress-block.php";s:8:"1.0Beta5";s:24:"buddypress/bp-loader.php";s:5:"1.5.4";s:33:"buddypress-activity-plus/bpfb.php";s:5:"1.6.4";s:38:"buddypress-activity-privacy/loader.php";s:5:"1.3.8";s:45:"bp-automatic-friends/bp-automatic-friends.php";s:5:"1.6.2";s:35:"buddypress-followers-1.2/loader.php";s:3:"1.2";s:46:"buddypress-global/buddypress-global-search.php";s:5:"1.0.0";s:34:"buddypress-like/bp-like-loader.php";s:5:"0.3.0";s:60:"buddypress_FeaturedActivity/buddypress_featured_activity.php";s:5:"1.0.0";s:19:"hashtags/loader.php";s:5:"0.5.1";s:9:"hello.php";s:3:"1.6";s:39:"iw-magnific-popup/iw-magnific-popup.php";s:7:"1.3.1.1";s:49:"buddypress_recommended/buddypress_recommended.php";s:5:"1.6.5";s:53:"buddypress_recommended/ms2-buddypress_recommended.php";s:5:"1.6.5";}s:8:"response";a:1:{s:35:"buddypress-followers-1.2/loader.php";O:8:"stdClass":12:{s:2:"id";s:34:"w.org/plugins/buddypress-followers";s:4:"slug";s:20:"buddypress-followers";s:6:"plugin";s:35:"buddypress-followers-1.2/loader.php";s:11:"new_version";s:5:"1.2.2";s:3:"url";s:51:"https://wordpress.org/plugins/buddypress-followers/";s:7:"package";s:68:"http://downloads.wordpress.org/plugin/buddypress-followers.1.2.2.zip";s:5:"icons";a:1:{s:7:"default";s:71:"https://s.w.org/plugins/geopattern-icon/buddypress-followers_ffe5b1.svg";}s:7:"banners";a:1:{s:2:"1x";s:74:"https://ps.w.org/buddypress-followers/assets/banner-772x250.png?rev=480551";}s:11:"banners_rtl";a:0:{}s:6:"tested";s:19:"WP 4.4.x / BP 2.5.x";s:12:"requires_php";b:0;s:13:"compatibility";a:0:{}}}}', 'yes'),
-(115, 0, '_site_transient_update_themes', 'O:8:"stdClass":3:{s:12:"last_checked";i:1535277482;s:7:"checked";a:3:{s:10:"bp-default";s:5:"1.5.4";s:12:"twentyeleven";s:3:"1.2";s:9:"twentyten";s:3:"1.2";}s:8:"response";a:2:{s:12:"twentyeleven";a:4:{s:5:"theme";s:12:"twentyeleven";s:11:"new_version";s:3:"2.8";s:3:"url";s:42:"https://wordpress.org/themes/twentyeleven/";s:7:"package";s:57:"http://downloads.wordpress.org/theme/twentyeleven.2.8.zip";}s:9:"twentyten";a:4:{s:5:"theme";s:9:"twentyten";s:11:"new_version";s:3:"2.5";s:3:"url";s:39:"https://wordpress.org/themes/twentyten/";s:7:"package";s:54:"http://downloads.wordpress.org/theme/twentyten.2.5.zip";}}}', 'yes'),
+(111, 0, '_site_transient_update_core', 'O:8:"stdClass":3:{s:7:"updates";a:1:{i:0;O:8:"stdClass":9:{s:8:"response";s:7:"upgrade";s:8:"download";s:58:"http://downloads.wordpress.org/release/wordpress-4.9.8.zip";s:6:"locale";s:5:"en_US";s:8:"packages";O:8:"stdClass":4:{s:4:"full";s:58:"http://downloads.wordpress.org/release/wordpress-4.9.8.zip";s:10:"no_content";s:69:"http://downloads.wordpress.org/release/wordpress-4.9.8-no-content.zip";s:11:"new_bundled";s:70:"http://downloads.wordpress.org/release/wordpress-4.9.8-new-bundled.zip";s:7:"partial";b:0;}s:7:"current";s:5:"4.9.8";s:11:"php_version";s:5:"5.2.4";s:13:"mysql_version";s:3:"5.0";s:11:"new_bundled";s:3:"4.7";s:15:"partial_version";s:0:"";}}s:12:"last_checked";i:1535288878;s:15:"version_checked";s:5:"3.2.1";}', 'yes'),
+(115, 0, '_site_transient_update_themes', 'O:8:"stdClass":3:{s:12:"last_checked";i:1535286330;s:7:"checked";a:3:{s:10:"bp-default";s:5:"1.5.4";s:12:"twentyeleven";s:3:"1.2";s:9:"twentyten";s:3:"1.2";}s:8:"response";a:2:{s:12:"twentyeleven";a:4:{s:5:"theme";s:12:"twentyeleven";s:11:"new_version";s:3:"2.8";s:3:"url";s:42:"https://wordpress.org/themes/twentyeleven/";s:7:"package";s:57:"http://downloads.wordpress.org/theme/twentyeleven.2.8.zip";}s:9:"twentyten";a:4:{s:5:"theme";s:9:"twentyten";s:11:"new_version";s:3:"2.5";s:3:"url";s:39:"https://wordpress.org/themes/twentyten/";s:7:"package";s:54:"http://downloads.wordpress.org/theme/twentyten.2.5.zip";}}}', 'yes'),
 (116, 0, '_site_transient_timeout_browser_6874a215c513950818178fc976389744', '1535880405', 'yes'),
 (117, 0, '_site_transient_browser_6874a215c513950818178fc976389744', 'a:10:{s:4:"name";s:6:"Chrome";s:7:"version";s:12:"68.0.3440.15";s:8:"platform";s:7:"Windows";s:10:"update_url";s:29:"https://www.google.com/chrome";s:7:"img_src";s:43:"http://s.w.org/images/browsers/chrome.png?1";s:11:"img_src_ssl";s:44:"https://s.w.org/images/browsers/chrome.png?1";s:15:"current_version";s:2:"18";s:7:"upgrade";b:0;s:8:"insecure";b:0;s:6:"mobile";b:0;}', 'yes'),
 (118, 0, 'dashboard_widget_options', 'a:4:{s:25:"dashboard_recent_comments";a:1:{s:5:"items";i:5;}s:24:"dashboard_incoming_links";a:5:{s:4:"home";s:22:"http://localhost:10086";s:4:"link";s:98:"http://blogsearch.google.com/blogsearch?scoring=d&partner=wordpress&q=link:http://localhost:10086/";s:3:"url";s:131:"http://blogsearch.google.com/blogsearch_feeds?scoring=d&ie=utf-8&num=10&output=rss&partner=wordpress&q=link:http://localhost:10086/";s:5:"items";i:10;s:9:"show_date";b:0;}s:17:"dashboard_primary";a:7:{s:4:"link";s:26:"http://wordpress.org/news/";s:3:"url";s:31:"http://wordpress.org/news/feed/";s:5:"title";s:14:"WordPress Blog";s:5:"items";i:2;s:12:"show_summary";i:1;s:11:"show_author";i:0;s:9:"show_date";i:1;}s:19:"dashboard_secondary";a:7:{s:4:"link";s:28:"http://planet.wordpress.org/";s:3:"url";s:33:"http://planet.wordpress.org/feed/";s:5:"title";s:20:"Other WordPress News";s:5:"items";i:5;s:12:"show_summary";i:0;s:11:"show_author";i:0;s:9:"show_date";i:0;}}', 'yes'),
@@ -749,13 +772,13 @@ INSERT INTO `wp_options` (`option_id`, `blog_id`, `option_name`, `option_value`,
 (128, 0, '_transient_feed_mod_867bd5c64f85878d03a060509cd2f92c', '1535275608', 'no'),
 (129, 0, '_transient_timeout_dash_aa95765b5cc111c56d5993d476b1c2f0', '1535318808', 'no'),
 (130, 0, '_transient_dash_aa95765b5cc111c56d5993d476b1c2f0', '<div class="rss-widget"><ul><li><a class=''rsswidget'' href=''https://wptavern.com/wpcampus-2018-videos-are-now-available-to-watch'' title=''WPCampus 2018 was held July 12-14, 2018, at Washington University in St. Louis, Missouri. Educators, staff, and those in higher-education gathered to learn how WordPress can be and is used in higher-education environments. If you couldn’t attend in person or watch the live stream, you can now watch all of the sessions for free. Visit the event’s schedule pag [&hellip;]''>WPTavern: WPCampus 2018 Videos Are Now Available to Watch</a></li><li><a class=''rsswidget'' href=''https://wptavern.com/gutenberg-and-classic-editor-plugins-pass-200000-active-installations-wordpress-4-9-9-planning-underway'' title=''photo credit: reingestalter numeral types – (license) It has been three weeks since the “Try Gutenberg” prompt was sent out in WordPress 4.9.8 and the plugin has now passed 200,000 active installations. The callout has increased the visibility of the Gutenberg project and brought necessary feedback to the development and design of the new editor. Prior to Wo [&hellip;]''>WPTavern: Gutenberg and Classic Editor Plugins Pass 200,000 Active Installations, WordPress 4.9.9 Planning Underway</a></li><li><a class=''rsswidget'' href=''https://wptavern.com/wordcamp-kochi-is-postponed-to-november-3rd-due-to-extensive-flooding'' title=''WordCamp Kochi, India, was originally scheduled for September 2nd, but due to heavy rains and extensive flooding in the area, the event has been postponed to November 3rd. The venue is unchanged. Kochi is located in Southwest India in the coastal state of Kerala. The flooding has been so severe, the Kochi airport has been shutdown since August 15th due to el [&hellip;]''>WPTavern: WordCamp Kochi is Postponed to November 3rd Due to Extensive Flooding</a></li><li><a class=''rsswidget'' href=''https://ma.tt/2018/08/gulf-coast-soul/'' title=''Brett Martin has an excellent longread in GQ, Houston Is the New Capital Of Southern Cool. I moved to San Francisco when I was 20, I hadn’t ever even been old enough to drink in Houston, but when I returned in my late twenties and really made it my home I was blown away at how much the city had changed in the time I had been away. Or maybe I just grew up eno [&hellip;]''>Matt: Gulf Coast Soul</a></li><li><a class=''rsswidget'' href=''https://wptavern.com/new-network-media-library-plugin-creates-a-shared-library-on-a-multisite-network'' title=''WordPress core committer John Blackbourn has released a new plugin called Network Media Library that provides a shared media library across all sites on a WordPress multisite network. Blackbourn is an engineer at Human Made and the plugin is one he created for a client by forking Frank Bültge and Dominik Schilling’s Multisite Global Media plugin. By default, [&hellip;]''>WPTavern: New Network Media Library Plugin Creates a Shared Library on a Multisite Network</a></li></ul></div>', 'no'),
-(131, 0, '_transient_timeout_plugin_slugs', '1535370039', 'no'),
-(132, 0, '_transient_plugin_slugs', 'a:16:{i:0;s:19:"akismet/akismet.php";i:1;s:39:"block-post/bp-activity-block-loader.php";i:2;s:39:"bp-you-are-blocked/buddypress-block.php";i:3;s:24:"buddypress/bp-loader.php";i:4;s:33:"buddypress-activity-plus/bpfb.php";i:5;s:38:"buddypress-activity-privacy/loader.php";i:6;s:45:"bp-automatic-friends/bp-automatic-friends.php";i:7;s:35:"buddypress-followers-1.2/loader.php";i:8;s:46:"buddypress-global/buddypress-global-search.php";i:9;s:34:"buddypress-like/bp-like-loader.php";i:10;s:60:"buddypress_FeaturedActivity/buddypress_featured_activity.php";i:11;s:19:"hashtags/loader.php";i:12;s:9:"hello.php";i:13;s:39:"iw-magnific-popup/iw-magnific-popup.php";i:14;s:49:"buddypress_recommended/buddypress_recommended.php";i:15;s:53:"buddypress_recommended/ms2-buddypress_recommended.php";}', 'no'),
+(131, 0, '_transient_timeout_plugin_slugs', '1535380002', 'no'),
+(132, 0, '_transient_plugin_slugs', 'a:17:{i:0;s:19:"akismet/akismet.php";i:1;s:39:"block-post/bp-activity-block-loader.php";i:2;s:39:"bp-you-are-blocked/buddypress-block.php";i:3;s:24:"buddypress/bp-loader.php";i:4;s:33:"buddypress-activity-plus/bpfb.php";i:5;s:38:"buddypress-activity-privacy/loader.php";i:6;s:45:"bp-automatic-friends/bp-automatic-friends.php";i:7;s:35:"buddypress-followers-1.2/loader.php";i:8;s:46:"buddypress-global/buddypress-global-search.php";i:9;s:34:"buddypress-like/bp-like-loader.php";i:10;s:60:"buddypress_FeaturedActivity/buddypress_featured_activity.php";i:11;s:19:"hashtags/loader.php";i:12;s:9:"hello.php";i:13;s:39:"iw-magnific-popup/iw-magnific-popup.php";i:14;s:37:"social-media-widget/social-widget.php";i:15;s:53:"buddypress_recommended/ms2-buddypress_recommended.php";i:16;s:49:"buddypress_recommended/buddypress_recommended.php";}', 'no'),
 (133, 0, '_transient_timeout_dash_de3249c4736ad3bd2cd29147c4a0d43e', '1535318809', 'no'),
 (134, 0, '_transient_dash_de3249c4736ad3bd2cd29147c4a0d43e', '', 'no'),
-(135, 0, '_site_transient_timeout_wporg_theme_feature_list', '1535289965', 'yes'),
+(135, 0, '_site_transient_timeout_wporg_theme_feature_list', '1535299824', 'yes'),
 (136, 0, '_site_transient_wporg_theme_feature_list', 'a:5:{s:6:"Colors";a:15:{i:0;s:5:"black";i:1;s:4:"blue";i:2;s:5:"brown";i:3;s:4:"gray";i:4;s:5:"green";i:5;s:6:"orange";i:6;s:4:"pink";i:7;s:6:"purple";i:8;s:3:"red";i:9;s:6:"silver";i:10;s:3:"tan";i:11;s:5:"white";i:12;s:6:"yellow";i:13;s:4:"dark";i:14;s:5:"light";}s:7:"Columns";a:6:{i:0;s:10:"one-column";i:1;s:11:"two-columns";i:2;s:13:"three-columns";i:3;s:12:"four-columns";i:4;s:12:"left-sidebar";i:5;s:13:"right-sidebar";}s:8:"Features";a:19:{i:0;s:8:"blavatar";i:1;s:10:"buddypress";i:2;s:17:"custom-background";i:3;s:13:"custom-colors";i:4;s:13:"custom-header";i:5;s:11:"custom-menu";i:6;s:12:"editor-style";i:7;s:21:"featured-image-header";i:8;s:15:"featured-images";i:9;s:15:"flexible-header";i:10;s:20:"front-page-post-form";i:11;s:19:"full-width-template";i:12;s:12:"microformats";i:13;s:12:"post-formats";i:14;s:20:"rtl-language-support";i:15;s:11:"sticky-post";i:16;s:13:"theme-options";i:17;s:17:"threaded-comments";i:18;s:17:"translation-ready";}s:7:"Subject";a:3:{i:0;s:7:"holiday";i:1;s:13:"photoblogging";i:2;s:8:"seasonal";}s:5:"Width";a:2:{i:0;s:11:"fixed-width";i:1;s:14:"flexible-width";}}', 'yes'),
-(137, 0, 'recently_activated', 'a:1:{s:49:"buddypress_recommended/buddypress_recommended.php";i:1535277768;}', 'yes'),
+(137, 0, 'recently_activated', 'a:1:{s:53:"nextend-facebook-connect/nextend-facebook-connect.php";i:1535291295;}', 'yes'),
 (140, 0, 'bp-active-components', 'a:9:{s:8:"xprofile";s:1:"1";s:8:"settings";s:1:"1";s:7:"friends";s:1:"1";s:8:"messages";s:1:"1";s:8:"activity";s:1:"1";s:6:"groups";s:1:"1";s:6:"forums";s:1:"1";s:5:"blogs";s:1:"1";s:7:"members";s:1:"1";}', 'yes'),
 (141, 0, 'bp-xprofile-base-group-name', 'Base', 'yes'),
 (142, 0, 'bp-xprofile-fullname-field-name', 'Name', 'yes'),
@@ -763,7 +786,7 @@ INSERT INTO `wp_options` (`option_id`, `blog_id`, `option_name`, `option_value`,
 (145, 0, 'template_root', '/plugins/buddypress/bp-themes', 'yes'),
 (146, 0, 'stylesheet_root', '/plugins/buddypress/bp-themes', 'yes'),
 (147, 0, 'current_theme', 'BuddyPress Default', 'yes'),
-(148, 0, 'theme_mods_bp-default', 'a:1:{i:0;b:0;}', 'yes'),
+(148, 0, 'theme_mods_bp-default', 'a:7:{i:0;b:0;s:16:"background_image";s:0:"";s:22:"background_image_thumb";s:0:"";s:17:"background_repeat";s:6:"repeat";s:21:"background_position_x";s:4:"left";s:21:"background_attachment";s:6:"scroll";s:16:"background_color";s:6:"c1c1c1";}', 'yes'),
 (149, 0, 'bp-db-version', '3820', 'yes'),
 (150, 0, 'widget_bp_core_members_widget', 'a:2:{i:2;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (151, 0, 'widget_bp_core_whos_online_widget', 'a:2:{i:2;a:2:{s:5:"title";s:12:"Who''s Online";s:11:"max_members";s:2:"15";}s:12:"_multiwidget";i:1;}', 'yes'),
@@ -775,10 +798,10 @@ INSERT INTO `wp_options` (`option_id`, `blog_id`, `option_name`, `option_value`,
 (157, 0, 'bp-disable-profile-sync', '0', 'yes'),
 (158, 0, 'bp-disable-avatar-uploads', '0', 'yes'),
 (159, 0, 'bp-disable-account-deletion', '0', 'yes'),
-(161, 0, 'hide-loggedout-adminbar', '0', 'yes'),
+(161, 0, 'hide-loggedout-adminbar', '1', 'yes'),
 (162, 0, 'registration', '0', 'yes'),
 (164, 0, 'bpfb_plugin', 'a:1:{s:9:"installed";i:1;}', 'yes'),
-(167, 0, 'widget_bp_follow_following_widget', 'a:2:{i:2;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
+(167, 0, 'widget_bp_follow_following_widget', 'a:3:{i:2;a:0:{}i:3;a:2:{s:5:"title";s:19:"Users I''m Following";s:9:"max_users";i:16;}s:12:"_multiwidget";i:1;}', 'yes'),
 (168, 0, 'bp_like_db_version', '43', 'yes'),
 (169, 0, 'bp_like_settings', '', 'yes'),
 (170, 0, 'bp-hashtags-db-version', '0.5.1', 'yes'),
@@ -786,12 +809,26 @@ INSERT INTO `wp_options` (`option_id`, `blog_id`, `option_name`, `option_value`,
 (178, 0, 'bpfb', 'a:6:{s:5:"theme";s:3:"new";s:9:"alignment";s:4:"left";s:12:"oembed_width";i:450;s:20:"thumbnail_size_width";i:150;s:21:"thumbnail_size_height";i:150;s:14:"cleanup_images";b:0;}', 'yes'),
 (179, 0, 'feature_post_rate', '5', 'yes'),
 (180, 0, 'category_children', 'a:0:{}', 'yes'),
-(181, 0, '_site_transient_timeout_theme_roots', '1535290752', 'yes'),
-(182, 0, '_site_transient_theme_roots', 'a:3:{s:10:"bp-default";s:29:"/plugins/buddypress/bp-themes";s:12:"twentyeleven";s:7:"/themes";s:9:"twentyten";s:7:"/themes";}', 'yes'),
-(184, 0, 'bb-config-location', 'D:\\xampp\\htdocs\\vanilla/bb-config.php', 'yes'),
-(188, 0, '_transient_random_seed', '40f134a96aca442a8995c33d2069c139', 'yes');
+(188, 0, '_transient_random_seed', '40f134a96aca442a8995c33d2069c139', 'yes'),
+(190, 0, '_transient_plugins_delete_result_1', '1', 'yes'),
+(193, 0, '_transient_timeout_initdata', '1535294236', 'no'),
+(194, 0, '_transient_initdata', 'a:0:{}', 'no'),
+(195, 0, 'cache_new_time', '1535293236', 'yes'),
+(196, 0, 'new', 'old', 'yes'),
+(200, 0, '_site_transient_timeout_poptags_40cd750bba9870f18aada2478b24840a', '1535299305', 'yes');
 INSERT INTO `wp_options` (`option_id`, `blog_id`, `option_name`, `option_value`, `autoload`) VALUES
-(189, 0, 'rewrite_rules', 'a:72:{s:56:"archives/category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:51:"archives/category/(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:44:"archives/category/(.+?)/page/?([0-9]{1,})/?$";s:53:"index.php?category_name=$matches[1]&paged=$matches[2]";s:26:"archives/category/(.+?)/?$";s:35:"index.php?category_name=$matches[1]";s:53:"archives/tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:48:"archives/tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:41:"archives/tag/([^/]+)/page/?([0-9]{1,})/?$";s:43:"index.php?tag=$matches[1]&paged=$matches[2]";s:23:"archives/tag/([^/]+)/?$";s:25:"index.php?tag=$matches[1]";s:54:"archives/type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:49:"archives/type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:42:"archives/type/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?post_format=$matches[1]&paged=$matches[2]";s:24:"archives/type/([^/]+)/?$";s:33:"index.php?post_format=$matches[1]";s:12:"robots\\.txt$";s:18:"index.php?robots=1";s:14:".*wp-atom.php$";s:19:"index.php?feed=atom";s:13:".*wp-rdf.php$";s:18:"index.php?feed=rdf";s:13:".*wp-rss.php$";s:18:"index.php?feed=rss";s:14:".*wp-rss2.php$";s:19:"index.php?feed=rss2";s:14:".*wp-feed.php$";s:19:"index.php?feed=feed";s:22:".*wp-commentsrss2.php$";s:34:"index.php?feed=rss2&withcomments=1";s:32:"feed/(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:27:"(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:20:"page/?([0-9]{1,})/?$";s:28:"index.php?&paged=$matches[1]";s:41:"comments/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:36:"comments/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:29:"comments/page/?([0-9]{1,})/?$";s:28:"index.php?&paged=$matches[1]";s:44:"search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:39:"search/(.+)/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:32:"search/(.+)/page/?([0-9]{1,})/?$";s:41:"index.php?s=$matches[1]&paged=$matches[2]";s:14:"search/(.+)/?$";s:23:"index.php?s=$matches[1]";s:56:"archives/author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:51:"archives/author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:44:"archives/author/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?author_name=$matches[1]&paged=$matches[2]";s:26:"archives/author/([^/]+)/?$";s:33:"index.php?author_name=$matches[1]";s:83:"archives/date/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:78:"archives/date/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:71:"archives/date/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:81:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&paged=$matches[4]";s:53:"archives/date/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$";s:63:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]";s:70:"archives/date/([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:65:"archives/date/([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:58:"archives/date/([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:65:"index.php?year=$matches[1]&monthnum=$matches[2]&paged=$matches[3]";s:40:"archives/date/([0-9]{4})/([0-9]{1,2})/?$";s:47:"index.php?year=$matches[1]&monthnum=$matches[2]";s:57:"archives/date/([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:52:"archives/date/([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:45:"archives/date/([0-9]{4})/page/?([0-9]{1,})/?$";s:44:"index.php?year=$matches[1]&paged=$matches[2]";s:27:"archives/date/([0-9]{4})/?$";s:26:"index.php?year=$matches[1]";s:37:"archives/[0-9]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:47:"archives/[0-9]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:67:"archives/[0-9]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:62:"archives/[0-9]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:62:"archives/[0-9]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:30:"archives/([0-9]+)/trackback/?$";s:28:"index.php?p=$matches[1]&tb=1";s:50:"archives/([0-9]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?p=$matches[1]&feed=$matches[2]";s:45:"archives/([0-9]+)/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?p=$matches[1]&feed=$matches[2]";s:38:"archives/([0-9]+)/page/?([0-9]{1,})/?$";s:41:"index.php?p=$matches[1]&paged=$matches[2]";s:45:"archives/([0-9]+)/comment-page-([0-9]{1,})/?$";s:41:"index.php?p=$matches[1]&cpage=$matches[2]";s:30:"archives/([0-9]+)(/[0-9]+)?/?$";s:40:"index.php?p=$matches[1]&page=$matches[2]";s:26:"archives/[0-9]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:36:"archives/[0-9]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:56:"archives/[0-9]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:51:"archives/[0-9]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:51:"archives/[0-9]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:25:".+?/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:35:".+?/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:55:".+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:50:".+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:50:".+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:18:"(.+?)/trackback/?$";s:35:"index.php?pagename=$matches[1]&tb=1";s:38:"(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:33:"(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:26:"(.+?)/page/?([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&paged=$matches[2]";s:33:"(.+?)/comment-page-([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&cpage=$matches[2]";s:18:"(.+?)(/[0-9]+)?/?$";s:47:"index.php?pagename=$matches[1]&page=$matches[2]";}', 'yes');
+(201, 0, '_site_transient_poptags_40cd750bba9870f18aada2478b24840a', 'O:8:"stdClass":100:{s:6:"widget";a:3:{s:4:"name";s:6:"widget";s:4:"slug";s:6:"widget";s:5:"count";i:4495;}s:11:"woocommerce";a:3:{s:4:"name";s:11:"woocommerce";s:4:"slug";s:11:"woocommerce";s:5:"count";i:2945;}s:4:"post";a:3:{s:4:"name";s:4:"post";s:4:"slug";s:4:"post";s:5:"count";i:2583;}s:5:"admin";a:3:{s:4:"name";s:5:"admin";s:4:"slug";s:5:"admin";s:5:"count";i:2447;}s:5:"posts";a:3:{s:4:"name";s:5:"posts";s:4:"slug";s:5:"posts";s:5:"count";i:1883;}s:9:"shortcode";a:3:{s:4:"name";s:9:"shortcode";s:4:"slug";s:9:"shortcode";s:5:"count";i:1673;}s:8:"comments";a:3:{s:4:"name";s:8:"comments";s:4:"slug";s:8:"comments";s:5:"count";i:1671;}s:7:"twitter";a:3:{s:4:"name";s:7:"twitter";s:4:"slug";s:7:"twitter";s:5:"count";i:1457;}s:6:"images";a:3:{s:4:"name";s:6:"images";s:4:"slug";s:6:"images";s:5:"count";i:1404;}s:6:"google";a:3:{s:4:"name";s:6:"google";s:4:"slug";s:6:"google";s:5:"count";i:1398;}s:8:"facebook";a:3:{s:4:"name";s:8:"facebook";s:4:"slug";s:8:"facebook";s:5:"count";i:1393;}s:5:"image";a:3:{s:4:"name";s:5:"image";s:4:"slug";s:5:"image";s:5:"count";i:1329;}s:7:"sidebar";a:3:{s:4:"name";s:7:"sidebar";s:4:"slug";s:7:"sidebar";s:5:"count";i:1284;}s:3:"seo";a:3:{s:4:"name";s:3:"seo";s:4:"slug";s:3:"seo";s:5:"count";i:1237;}s:7:"gallery";a:3:{s:4:"name";s:7:"gallery";s:4:"slug";s:7:"gallery";s:5:"count";i:1111;}s:4:"page";a:3:{s:4:"name";s:4:"page";s:4:"slug";s:4:"page";s:5:"count";i:1072;}s:5:"email";a:3:{s:4:"name";s:5:"email";s:4:"slug";s:5:"email";s:5:"count";i:1034;}s:6:"social";a:3:{s:4:"name";s:6:"social";s:4:"slug";s:6:"social";s:5:"count";i:1031;}s:9:"ecommerce";a:3:{s:4:"name";s:9:"ecommerce";s:4:"slug";s:9:"ecommerce";s:5:"count";i:919;}s:5:"login";a:3:{s:4:"name";s:5:"login";s:4:"slug";s:5:"login";s:5:"count";i:888;}s:5:"links";a:3:{s:4:"name";s:5:"links";s:4:"slug";s:5:"links";s:5:"count";i:833;}s:7:"widgets";a:3:{s:4:"name";s:7:"widgets";s:4:"slug";s:7:"widgets";s:5:"count";i:812;}s:5:"video";a:3:{s:4:"name";s:5:"video";s:4:"slug";s:5:"video";s:5:"count";i:807;}s:8:"security";a:3:{s:4:"name";s:8:"security";s:4:"slug";s:8:"security";s:5:"count";i:733;}s:7:"content";a:3:{s:4:"name";s:7:"content";s:4:"slug";s:7:"content";s:5:"count";i:704;}s:10:"buddypress";a:3:{s:4:"name";s:10:"buddypress";s:4:"slug";s:10:"buddypress";s:5:"count";i:695;}s:3:"rss";a:3:{s:4:"name";s:3:"rss";s:4:"slug";s:3:"rss";s:5:"count";i:688;}s:4:"spam";a:3:{s:4:"name";s:4:"spam";s:4:"slug";s:4:"spam";s:5:"count";i:685;}s:6:"slider";a:3:{s:4:"name";s:6:"slider";s:4:"slug";s:6:"slider";s:5:"count";i:676;}s:5:"pages";a:3:{s:4:"name";s:5:"pages";s:4:"slug";s:5:"pages";s:5:"count";i:666;}s:10:"e-commerce";a:3:{s:4:"name";s:10:"e-commerce";s:4:"slug";s:10:"e-commerce";s:5:"count";i:658;}s:9:"analytics";a:3:{s:4:"name";s:9:"analytics";s:4:"slug";s:9:"analytics";s:5:"count";i:657;}s:5:"media";a:3:{s:4:"name";s:5:"media";s:4:"slug";s:5:"media";s:5:"count";i:646;}s:6:"jquery";a:3:{s:4:"name";s:6:"jquery";s:4:"slug";s:6:"jquery";s:5:"count";i:642;}s:4:"feed";a:3:{s:4:"name";s:4:"feed";s:4:"slug";s:4:"feed";s:5:"count";i:616;}s:4:"form";a:3:{s:4:"name";s:4:"form";s:4:"slug";s:4:"form";s:5:"count";i:613;}s:6:"search";a:3:{s:4:"name";s:6:"search";s:4:"slug";s:6:"search";s:5:"count";i:612;}s:4:"ajax";a:3:{s:4:"name";s:4:"ajax";s:4:"slug";s:4:"ajax";s:5:"count";i:607;}s:8:"category";a:3:{s:4:"name";s:8:"category";s:4:"slug";s:8:"category";s:5:"count";i:600;}s:4:"menu";a:3:{s:4:"name";s:4:"menu";s:4:"slug";s:4:"menu";s:5:"count";i:595;}s:5:"embed";a:3:{s:4:"name";s:5:"embed";s:4:"slug";s:5:"embed";s:5:"count";i:573;}s:10:"javascript";a:3:{s:4:"name";s:10:"javascript";s:4:"slug";s:10:"javascript";s:5:"count";i:550;}s:3:"css";a:3:{s:4:"name";s:3:"css";s:4:"slug";s:3:"css";s:5:"count";i:545;}s:4:"link";a:3:{s:4:"name";s:4:"link";s:4:"slug";s:4:"link";s:5:"count";i:542;}s:7:"youtube";a:3:{s:4:"name";s:7:"youtube";s:4:"slug";s:7:"youtube";s:5:"count";i:530;}s:5:"share";a:3:{s:4:"name";s:5:"share";s:4:"slug";s:5:"share";s:5:"count";i:523;}s:5:"theme";a:3:{s:4:"name";s:5:"theme";s:4:"slug";s:5:"theme";s:5:"count";i:516;}s:6:"editor";a:3:{s:4:"name";s:6:"editor";s:4:"slug";s:6:"editor";s:5:"count";i:514;}s:7:"comment";a:3:{s:4:"name";s:7:"comment";s:4:"slug";s:7:"comment";s:5:"count";i:514;}s:10:"responsive";a:3:{s:4:"name";s:10:"responsive";s:4:"slug";s:10:"responsive";s:5:"count";i:507;}s:9:"dashboard";a:3:{s:4:"name";s:9:"dashboard";s:4:"slug";s:9:"dashboard";s:5:"count";i:494;}s:6:"custom";a:3:{s:4:"name";s:6:"custom";s:4:"slug";s:6:"custom";s:5:"count";i:491;}s:12:"contact-form";a:3:{s:4:"name";s:12:"contact form";s:4:"slug";s:12:"contact-form";s:5:"count";i:491;}s:10:"categories";a:3:{s:4:"name";s:10:"categories";s:4:"slug";s:10:"categories";s:5:"count";i:484;}s:9:"affiliate";a:3:{s:4:"name";s:9:"affiliate";s:4:"slug";s:9:"affiliate";s:5:"count";i:481;}s:3:"ads";a:3:{s:4:"name";s:3:"ads";s:4:"slug";s:3:"ads";s:5:"count";i:480;}s:6:"button";a:3:{s:4:"name";s:6:"button";s:4:"slug";s:6:"button";s:5:"count";i:460;}s:4:"tags";a:3:{s:4:"name";s:4:"tags";s:4:"slug";s:4:"tags";s:5:"count";i:457;}s:4:"user";a:3:{s:4:"name";s:4:"user";s:4:"slug";s:4:"user";s:5:"count";i:453;}s:7:"contact";a:3:{s:4:"name";s:7:"contact";s:4:"slug";s:7:"contact";s:5:"count";i:442;}s:6:"mobile";a:3:{s:4:"name";s:6:"mobile";s:4:"slug";s:6:"mobile";s:5:"count";i:439;}s:3:"api";a:3:{s:4:"name";s:3:"api";s:4:"slug";s:3:"api";s:5:"count";i:436;}s:5:"photo";a:3:{s:4:"name";s:5:"photo";s:4:"slug";s:5:"photo";s:5:"count";i:422;}s:5:"users";a:3:{s:4:"name";s:5:"users";s:4:"slug";s:5:"users";s:5:"count";i:419;}s:5:"stats";a:3:{s:4:"name";s:5:"stats";s:4:"slug";s:5:"stats";s:5:"count";i:417;}s:6:"events";a:3:{s:4:"name";s:6:"events";s:4:"slug";s:6:"events";s:5:"count";i:417;}s:9:"slideshow";a:3:{s:4:"name";s:9:"slideshow";s:4:"slug";s:9:"slideshow";s:5:"count";i:414;}s:7:"payment";a:3:{s:4:"name";s:7:"payment";s:4:"slug";s:7:"payment";s:5:"count";i:414;}s:6:"photos";a:3:{s:4:"name";s:6:"photos";s:4:"slug";s:6:"photos";s:5:"count";i:408;}s:10:"navigation";a:3:{s:4:"name";s:10:"navigation";s:4:"slug";s:10:"navigation";s:5:"count";i:389;}s:10:"statistics";a:3:{s:4:"name";s:10:"statistics";s:4:"slug";s:10:"statistics";s:5:"count";i:388;}s:8:"calendar";a:3:{s:4:"name";s:8:"calendar";s:4:"slug";s:8:"calendar";s:5:"count";i:374;}s:15:"payment-gateway";a:3:{s:4:"name";s:15:"payment gateway";s:4:"slug";s:15:"payment-gateway";s:5:"count";i:371;}s:4:"news";a:3:{s:4:"name";s:4:"news";s:4:"slug";s:4:"news";s:5:"count";i:371;}s:10:"shortcodes";a:3:{s:4:"name";s:10:"shortcodes";s:4:"slug";s:10:"shortcodes";s:5:"count";i:366;}s:5:"popup";a:3:{s:4:"name";s:5:"popup";s:4:"slug";s:5:"popup";s:5:"count";i:362;}s:4:"chat";a:3:{s:4:"name";s:4:"chat";s:4:"slug";s:4:"chat";s:5:"count";i:359;}s:9:"marketing";a:3:{s:4:"name";s:9:"marketing";s:4:"slug";s:9:"marketing";s:5:"count";i:358;}s:12:"social-media";a:3:{s:4:"name";s:12:"social media";s:4:"slug";s:12:"social-media";s:5:"count";i:350;}s:7:"plugins";a:3:{s:4:"name";s:7:"plugins";s:4:"slug";s:7:"plugins";s:5:"count";i:348;}s:9:"multisite";a:3:{s:4:"name";s:9:"multisite";s:4:"slug";s:9:"multisite";s:5:"count";i:346;}s:10:"newsletter";a:3:{s:4:"name";s:10:"newsletter";s:4:"slug";s:10:"newsletter";s:5:"count";i:346;}s:4:"code";a:3:{s:4:"name";s:4:"code";s:4:"slug";s:4:"code";s:5:"count";i:344;}s:4:"meta";a:3:{s:4:"name";s:4:"meta";s:4:"slug";s:4:"meta";s:5:"count";i:339;}s:3:"url";a:3:{s:4:"name";s:3:"url";s:4:"slug";s:3:"url";s:5:"count";i:337;}s:4:"list";a:3:{s:4:"name";s:4:"list";s:4:"slug";s:4:"list";s:5:"count";i:334;}s:8:"redirect";a:3:{s:4:"name";s:8:"redirect";s:4:"slug";s:8:"redirect";s:5:"count";i:329;}s:5:"forms";a:3:{s:4:"name";s:5:"forms";s:4:"slug";s:5:"forms";s:5:"count";i:325;}s:11:"advertising";a:3:{s:4:"name";s:11:"advertising";s:4:"slug";s:11:"advertising";s:5:"count";i:312;}s:6:"simple";a:3:{s:4:"name";s:6:"simple";s:4:"slug";s:6:"simple";s:5:"count";i:309;}s:16:"custom-post-type";a:3:{s:4:"name";s:16:"custom post type";s:4:"slug";s:16:"custom-post-type";s:5:"count";i:308;}s:11:"performance";a:3:{s:4:"name";s:11:"performance";s:4:"slug";s:11:"performance";s:5:"count";i:304;}s:3:"tag";a:3:{s:4:"name";s:3:"tag";s:4:"slug";s:3:"tag";s:5:"count";i:303;}s:7:"adsense";a:3:{s:4:"name";s:7:"adsense";s:4:"slug";s:7:"adsense";s:5:"count";i:303;}s:12:"notification";a:3:{s:4:"name";s:12:"notification";s:4:"slug";s:12:"notification";s:5:"count";i:302;}s:4:"html";a:3:{s:4:"name";s:4:"html";s:4:"slug";s:4:"html";s:5:"count";i:301;}s:8:"tracking";a:3:{s:4:"name";s:8:"tracking";s:4:"slug";s:8:"tracking";s:5:"count";i:299;}s:16:"google-analytics";a:3:{s:4:"name";s:16:"google analytics";s:4:"slug";s:16:"google-analytics";s:5:"count";i:298;}s:6:"author";a:3:{s:4:"name";s:6:"author";s:4:"slug";s:6:"author";s:5:"count";i:296;}s:14:"contact-form-7";a:3:{s:4:"name";s:14:"contact form 7";s:4:"slug";s:14:"contact-form-7";s:5:"count";i:292;}}', 'yes'),
+(208, 0, '_site_transient_timeout_theme_roots', '1535298009', 'yes'),
+(209, 0, '_site_transient_theme_roots', 'a:3:{s:10:"bp-default";s:29:"/plugins/buddypress/bp-themes";s:12:"twentyeleven";s:7:"/themes";s:9:"twentyten";s:7:"/themes";}', 'yes'),
+(213, 0, 'uninstall_plugins', 'a:2:{i:0;b:0;s:59:"ultimate-social-media-icons/ultimate_social_media_icons.php";s:20:"sfsi_Unistall_plugin";}', 'yes'),
+(214, 0, 'adding_tags', 'yes', 'yes'),
+(215, 0, 'sfsi_plugin_do_activation_redirect', '1', 'yes'),
+(216, 0, '_site_transient_update_plugins', 'O:8:"stdClass":3:{s:12:"last_checked";i:1535291396;s:7:"checked";a:17:{s:19:"akismet/akismet.php";s:5:"2.5.3";s:39:"block-post/bp-activity-block-loader.php";s:5:"0.5.0";s:39:"bp-you-are-blocked/buddypress-block.php";s:8:"1.0Beta5";s:24:"buddypress/bp-loader.php";s:5:"1.5.4";s:33:"buddypress-activity-plus/bpfb.php";s:5:"1.6.4";s:38:"buddypress-activity-privacy/loader.php";s:5:"1.3.8";s:45:"bp-automatic-friends/bp-automatic-friends.php";s:5:"1.6.2";s:35:"buddypress-followers-1.2/loader.php";s:3:"1.2";s:46:"buddypress-global/buddypress-global-search.php";s:5:"1.0.0";s:34:"buddypress-like/bp-like-loader.php";s:5:"0.3.0";s:60:"buddypress_FeaturedActivity/buddypress_featured_activity.php";s:5:"1.0.0";s:19:"hashtags/loader.php";s:5:"0.5.1";s:9:"hello.php";s:3:"1.6";s:39:"iw-magnific-popup/iw-magnific-popup.php";s:7:"1.3.1.1";s:37:"social-media-widget/social-widget.php";s:5:"4.0.6";s:53:"buddypress_recommended/ms2-buddypress_recommended.php";s:5:"1.6.5";s:49:"buddypress_recommended/buddypress_recommended.php";s:5:"1.6.5";}s:8:"response";a:1:{s:35:"buddypress-followers-1.2/loader.php";O:8:"stdClass":12:{s:2:"id";s:34:"w.org/plugins/buddypress-followers";s:4:"slug";s:20:"buddypress-followers";s:6:"plugin";s:35:"buddypress-followers-1.2/loader.php";s:11:"new_version";s:5:"1.2.2";s:3:"url";s:51:"https://wordpress.org/plugins/buddypress-followers/";s:7:"package";s:68:"http://downloads.wordpress.org/plugin/buddypress-followers.1.2.2.zip";s:5:"icons";a:1:{s:7:"default";s:71:"https://s.w.org/plugins/geopattern-icon/buddypress-followers_ffe5b1.svg";}s:7:"banners";a:1:{s:2:"1x";s:74:"https://ps.w.org/buddypress-followers/assets/banner-772x250.png?rev=480551";}s:11:"banners_rtl";a:0:{}s:6:"tested";s:19:"WP 4.4.x / BP 2.5.x";s:12:"requires_php";b:0;s:13:"compatibility";a:0:{}}}}', 'yes'),
+(217, 0, 'socialwidget_global_notification', '1', 'yes'),
+(218, 0, 'widget_social-widget', 'a:3:{i:2;a:0:{}i:3;a:110:{s:5:"title";s:10:"Follow Us!";s:4:"text";s:0:"";s:10:"imgcaption";s:12:"Follow Us on";s:9:"icon_size";s:2:"32";s:9:"icon_pack";s:7:"default";s:9:"animation";s:4:"fade";s:12:"icon_opacity";s:7:"default";s:6:"newtab";s:3:"yes";s:8:"nofollow";s:2:"on";s:9:"alignment";s:4:"left";s:14:"display_titles";N;s:13:"icons_per_row";s:4:"auto";s:11:"slugtargets";a:5:{s:8:"facebook";s:0:"";s:10:"googleplus";s:0:"";s:7:"twitter";s:0:"";s:6:"github";s:0:"";s:7:"myspace";s:0:"";}s:10:"slugtitles";a:5:{s:8:"facebook";s:8:"facebook";s:10:"googleplus";s:6:"google";s:7:"twitter";s:7:"twitter";s:6:"github";s:6:"github";s:7:"myspace";s:7:"Myspace";}s:8:"slugalts";a:5:{s:8:"facebook";s:0:"";s:10:"googleplus";s:0:"";s:7:"twitter";s:0:"";s:6:"github";s:0:"";s:7:"myspace";s:0:"";}s:9:"slugorder";a:5:{i:0;s:8:"facebook";i:1;s:10:"googleplus";i:2;s:7:"twitter";i:3;s:6:"github";i:4;s:7:"myspace";}s:8:"facebook";s:25:"https://www.facebook.com/";s:10:"googleplus";s:23:"https://www.google.com/";s:7:"twitter";s:27:"https://twitter.com/twitter";s:7:"myspace";s:20:"https://myspace.com/";s:10:"friendfeed";s:7:"http://";s:5:"orkut";s:7:"http://";s:5:"hyves";s:7:"http://";s:8:"linkedin";s:7:"http://";s:11:"asmallworld";s:7:"http://";s:6:"flickr";s:7:"http://";s:9:"instagram";s:7:"http://";s:6:"picasa";s:7:"http://";s:9:"pinterest";s:7:"http://";s:7:"youtube";s:7:"http://";s:7:"aboutme";s:7:"http://";s:2:"vk";s:7:"http://";s:7:"skyrock";s:7:"http://";s:5:"skype";s:7:"http://";s:4:"digg";s:7:"http://";s:6:"reddit";s:7:"http://";s:9:"delicious";s:7:"http://";s:7:"stumble";s:7:"http://";s:6:"tumblr";s:7:"http://";s:6:"github";s:18:"https://github.com";s:4:"buzz";s:7:"http://";s:4:"talk";s:7:"http://";s:5:"vimeo";s:7:"http://";s:7:"blogger";s:7:"http://";s:9:"wordpress";s:7:"http://";s:4:"yelp";s:7:"http://";s:6:"lastfm";s:7:"http://";s:7:"pandora";s:7:"http://";s:7:"ustream";s:7:"http://";s:4:"imdb";s:7:"http://";s:4:"hulu";s:7:"http://";s:8:"flixster";s:7:"http://";s:10:"foursquare";s:7:"http://";s:6:"meetup";s:7:"http://";s:8:"plancast";s:7:"http://";s:10:"slideshare";s:7:"http://";s:10:"deviantart";s:7:"http://";s:6:"itunes";s:7:"http://";s:7:"live365";s:7:"http://";s:12:"digitaltunes";s:7:"http://";s:10:"soundcloud";s:7:"http://";s:8:"bandcamp";s:7:"http://";s:4:"etsy";s:7:"http://";s:3:"bbb";s:7:"http://";s:14:"merchantcircle";s:7:"http://";s:4:"ebay";s:7:"http://";s:5:"steam";s:7:"http://";s:8:"slashdot";s:7:"http://";s:9:"goodreads";s:7:"http://";s:10:"cuttingsme";s:7:"http://";s:7:"rss_url";s:7:"http://";s:9:"subscribe";s:7:"mailto:";s:11:"custom1name";s:0:"";s:11:"custom1icon";s:0:"";s:10:"custom1url";s:0:"";s:11:"custom2name";s:0:"";s:11:"custom2icon";s:0:"";s:10:"custom2url";s:0:"";s:11:"custom3name";s:0:"";s:11:"custom3icon";s:0:"";s:10:"custom3url";s:0:"";s:11:"custom4name";s:0:"";s:11:"custom4icon";s:0:"";s:10:"custom4url";s:0:"";s:11:"custom5name";s:0:"";s:11:"custom5icon";s:0:"";s:10:"custom5url";s:0:"";s:11:"custom6name";s:0:"";s:11:"custom6icon";s:0:"";s:10:"custom6url";s:0:"";s:11:"custom7name";s:0:"";s:11:"custom7icon";s:0:"";s:10:"custom7url";s:0:"";s:11:"custom8name";s:0:"";s:11:"custom8icon";s:0:"";s:10:"custom8url";s:0:"";s:11:"custom9name";s:0:"";s:11:"custom9icon";s:0:"";s:10:"custom9url";s:0:"";s:12:"custom10name";s:0:"";s:12:"custom10icon";s:0:"";s:11:"custom10url";s:0:"";s:12:"custom11name";s:0:"";s:12:"custom11icon";s:0:"";s:11:"custom11url";s:0:"";s:12:"custom12name";s:0:"";s:12:"custom12icon";s:0:"";s:11:"custom12url";s:0:"";s:14:"customiconsurl";s:55:"http://www.yoursite.com/wordpress/wp-content/your-icons";s:15:"customiconspath";s:19:"/path/to/your-icons";}s:12:"_multiwidget";i:1;}', 'yes'),
+(236, 0, 'bp_restrict_group_creation', '0', 'yes'),
+(238, 0, 'rewrite_rules', 'a:72:{s:56:"archives/category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:51:"archives/category/(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:44:"archives/category/(.+?)/page/?([0-9]{1,})/?$";s:53:"index.php?category_name=$matches[1]&paged=$matches[2]";s:26:"archives/category/(.+?)/?$";s:35:"index.php?category_name=$matches[1]";s:53:"archives/tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:48:"archives/tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:41:"archives/tag/([^/]+)/page/?([0-9]{1,})/?$";s:43:"index.php?tag=$matches[1]&paged=$matches[2]";s:23:"archives/tag/([^/]+)/?$";s:25:"index.php?tag=$matches[1]";s:54:"archives/type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:49:"archives/type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:42:"archives/type/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?post_format=$matches[1]&paged=$matches[2]";s:24:"archives/type/([^/]+)/?$";s:33:"index.php?post_format=$matches[1]";s:12:"robots\\.txt$";s:18:"index.php?robots=1";s:14:".*wp-atom.php$";s:19:"index.php?feed=atom";s:13:".*wp-rdf.php$";s:18:"index.php?feed=rdf";s:13:".*wp-rss.php$";s:18:"index.php?feed=rss";s:14:".*wp-rss2.php$";s:19:"index.php?feed=rss2";s:14:".*wp-feed.php$";s:19:"index.php?feed=feed";s:22:".*wp-commentsrss2.php$";s:34:"index.php?feed=rss2&withcomments=1";s:32:"feed/(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:27:"(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:20:"page/?([0-9]{1,})/?$";s:28:"index.php?&paged=$matches[1]";s:41:"comments/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:36:"comments/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:29:"comments/page/?([0-9]{1,})/?$";s:28:"index.php?&paged=$matches[1]";s:44:"search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:39:"search/(.+)/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:32:"search/(.+)/page/?([0-9]{1,})/?$";s:41:"index.php?s=$matches[1]&paged=$matches[2]";s:14:"search/(.+)/?$";s:23:"index.php?s=$matches[1]";s:56:"archives/author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:51:"archives/author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:44:"archives/author/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?author_name=$matches[1]&paged=$matches[2]";s:26:"archives/author/([^/]+)/?$";s:33:"index.php?author_name=$matches[1]";s:83:"archives/date/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:78:"archives/date/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:71:"archives/date/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:81:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&paged=$matches[4]";s:53:"archives/date/([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$";s:63:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]";s:70:"archives/date/([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:65:"archives/date/([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:58:"archives/date/([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:65:"index.php?year=$matches[1]&monthnum=$matches[2]&paged=$matches[3]";s:40:"archives/date/([0-9]{4})/([0-9]{1,2})/?$";s:47:"index.php?year=$matches[1]&monthnum=$matches[2]";s:57:"archives/date/([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:52:"archives/date/([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:45:"archives/date/([0-9]{4})/page/?([0-9]{1,})/?$";s:44:"index.php?year=$matches[1]&paged=$matches[2]";s:27:"archives/date/([0-9]{4})/?$";s:26:"index.php?year=$matches[1]";s:37:"archives/[0-9]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:47:"archives/[0-9]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:67:"archives/[0-9]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:62:"archives/[0-9]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:62:"archives/[0-9]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:30:"archives/([0-9]+)/trackback/?$";s:28:"index.php?p=$matches[1]&tb=1";s:50:"archives/([0-9]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?p=$matches[1]&feed=$matches[2]";s:45:"archives/([0-9]+)/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?p=$matches[1]&feed=$matches[2]";s:38:"archives/([0-9]+)/page/?([0-9]{1,})/?$";s:41:"index.php?p=$matches[1]&paged=$matches[2]";s:45:"archives/([0-9]+)/comment-page-([0-9]{1,})/?$";s:41:"index.php?p=$matches[1]&cpage=$matches[2]";s:30:"archives/([0-9]+)(/[0-9]+)?/?$";s:40:"index.php?p=$matches[1]&page=$matches[2]";s:26:"archives/[0-9]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:36:"archives/[0-9]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:56:"archives/[0-9]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:51:"archives/[0-9]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:51:"archives/[0-9]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:25:".+?/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:35:".+?/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:55:".+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:50:".+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:50:".+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:18:"(.+?)/trackback/?$";s:35:"index.php?pagename=$matches[1]&tb=1";s:38:"(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:33:"(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:26:"(.+?)/page/?([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&paged=$matches[2]";s:33:"(.+?)/comment-page-([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&cpage=$matches[2]";s:18:"(.+?)(/[0-9]+)?/?$";s:47:"index.php?pagename=$matches[1]&page=$matches[2]";}', 'yes'),
+(239, 0, 'bb-config-location', 'D:\\xampp\\htdocs\\vanilla/bb-config.php', 'yes');
 
 -- --------------------------------------------------------
 
@@ -807,7 +844,7 @@ CREATE TABLE IF NOT EXISTS `wp_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `wp_postmeta`
@@ -815,15 +852,56 @@ CREATE TABLE IF NOT EXISTS `wp_postmeta` (
 
 INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
 (1, 2, '_wp_page_template', 'default'),
-(2, 1, '_edit_lock', '1535280356:1'),
+(2, 1, '_edit_lock', '1535288809:1'),
 (3, 1, '_edit_last', '1'),
 (4, 1, '_pingme', '1'),
 (5, 1, '_encloseme', '1'),
 (6, 1, '_pingme', '1'),
 (7, 1, '_encloseme', '1'),
-(8, 11, '_edit_lock', '1535283675:1'),
+(8, 11, '_edit_lock', '1535293271:1'),
 (9, 14, '_wp_attached_file', '2018/08/mov_bbb.mp4'),
-(10, 14, '_wp_attachment_metadata', 'a:0:{}');
+(10, 14, '_wp_attachment_metadata', 'a:0:{}'),
+(11, 15, '_wp_attached_file', '2018/08/blog-3.jpg'),
+(12, 15, '_wp_attachment_context', 'custom-background'),
+(13, 15, '_wp_attachment_metadata', 'a:6:{s:5:"width";s:3:"360";s:6:"height";s:3:"260";s:14:"hwstring_small";s:23:"height=''92'' width=''128''";s:4:"file";s:18:"2018/08/blog-3.jpg";s:5:"sizes";a:3:{s:9:"thumbnail";a:3:{s:4:"file";s:18:"blog-3-150x150.jpg";s:5:"width";s:3:"150";s:6:"height";s:3:"150";}s:6:"medium";a:3:{s:4:"file";s:18:"blog-3-300x216.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"216";}s:14:"post-thumbnail";a:3:{s:4:"file";s:18:"blog-3-360x133.jpg";s:5:"width";s:3:"360";s:6:"height";s:3:"133";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'),
+(14, 15, '_wp_attachment_is_custom_background', 'bp-default'),
+(15, 16, '_wp_attached_file', '2018/08/room1.jpg'),
+(16, 16, '_wp_attachment_context', 'custom-background'),
+(17, 16, '_wp_attachment_metadata', 'a:6:{s:5:"width";s:3:"263";s:6:"height";s:3:"270";s:14:"hwstring_small";s:22:"height=''96'' width=''93''";s:4:"file";s:17:"2018/08/room1.jpg";s:5:"sizes";a:2:{s:9:"thumbnail";a:3:{s:4:"file";s:17:"room1-150x150.jpg";s:5:"width";s:3:"150";s:6:"height";s:3:"150";}s:14:"post-thumbnail";a:3:{s:4:"file";s:17:"room1-263x133.jpg";s:5:"width";s:3:"263";s:6:"height";s:3:"133";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'),
+(18, 16, '_wp_attachment_is_custom_background', 'bp-default'),
+(19, 17, '_wp_attached_file', '2018/08/1.jpg'),
+(20, 17, '_wp_attachment_context', 'custom-background'),
+(21, 17, '_wp_attachment_metadata', 'a:6:{s:5:"width";s:4:"1500";s:6:"height";s:3:"600";s:14:"hwstring_small";s:23:"height=''51'' width=''128''";s:4:"file";s:13:"2018/08/1.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:3:{s:4:"file";s:13:"1-150x150.jpg";s:5:"width";s:3:"150";s:6:"height";s:3:"150";}s:6:"medium";a:3:{s:4:"file";s:13:"1-300x120.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"120";}s:5:"large";a:3:{s:4:"file";s:14:"1-1024x409.jpg";s:5:"width";s:4:"1024";s:6:"height";s:3:"409";}s:14:"post-thumbnail";a:3:{s:4:"file";s:14:"1-1250x133.jpg";s:5:"width";s:4:"1250";s:6:"height";s:3:"133";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'),
+(22, 17, '_wp_attachment_is_custom_background', 'bp-default'),
+(23, 18, '_wp_attached_file', '2018/08/pf4.jpg'),
+(24, 18, '_wp_attachment_context', 'custom-background'),
+(25, 18, '_wp_attachment_metadata', 'a:6:{s:5:"width";s:3:"481";s:6:"height";s:3:"480";s:14:"hwstring_small";s:22:"height=''96'' width=''96''";s:4:"file";s:15:"2018/08/pf4.jpg";s:5:"sizes";a:3:{s:9:"thumbnail";a:3:{s:4:"file";s:15:"pf4-150x150.jpg";s:5:"width";s:3:"150";s:6:"height";s:3:"150";}s:6:"medium";a:3:{s:4:"file";s:15:"pf4-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}s:14:"post-thumbnail";a:3:{s:4:"file";s:15:"pf4-481x133.jpg";s:5:"width";s:3:"481";s:6:"height";s:3:"133";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'),
+(26, 18, '_wp_attachment_is_custom_background', 'bp-default'),
+(27, 19, '_wp_attached_file', '2018/08/pf8.jpg'),
+(28, 19, '_wp_attachment_context', 'custom-background'),
+(29, 19, '_wp_attachment_metadata', 'a:6:{s:5:"width";s:4:"1024";s:6:"height";s:4:"1022";s:14:"hwstring_small";s:22:"height=''96'' width=''96''";s:4:"file";s:15:"2018/08/pf8.jpg";s:5:"sizes";a:3:{s:9:"thumbnail";a:3:{s:4:"file";s:15:"pf8-150x150.jpg";s:5:"width";s:3:"150";s:6:"height";s:3:"150";}s:6:"medium";a:3:{s:4:"file";s:15:"pf8-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}s:14:"post-thumbnail";a:3:{s:4:"file";s:16:"pf8-1024x133.jpg";s:5:"width";s:4:"1024";s:6:"height";s:3:"133";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'),
+(30, 19, '_wp_attachment_is_custom_background', 'bp-default'),
+(31, 20, '_wp_attached_file', '2018/08/pf81.jpg'),
+(32, 20, '_wp_attachment_context', 'custom-background'),
+(33, 20, '_wp_attachment_metadata', 'a:6:{s:5:"width";s:4:"1024";s:6:"height";s:4:"1022";s:14:"hwstring_small";s:22:"height=''96'' width=''96''";s:4:"file";s:16:"2018/08/pf81.jpg";s:5:"sizes";a:3:{s:9:"thumbnail";a:3:{s:4:"file";s:16:"pf81-150x150.jpg";s:5:"width";s:3:"150";s:6:"height";s:3:"150";}s:6:"medium";a:3:{s:4:"file";s:16:"pf81-300x300.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"300";}s:14:"post-thumbnail";a:3:{s:4:"file";s:17:"pf81-1024x133.jpg";s:5:"width";s:4:"1024";s:6:"height";s:3:"133";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'),
+(34, 20, '_wp_attachment_is_custom_background', 'bp-default'),
+(35, 21, '_wp_attached_file', '2018/08/homebg.jpg'),
+(36, 21, '_wp_attachment_context', 'custom-background'),
+(37, 21, '_wp_attachment_metadata', 'a:6:{s:5:"width";s:4:"2806";s:6:"height";s:4:"1448";s:14:"hwstring_small";s:23:"height=''66'' width=''128''";s:4:"file";s:18:"2018/08/homebg.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:3:{s:4:"file";s:18:"homebg-150x150.jpg";s:5:"width";s:3:"150";s:6:"height";s:3:"150";}s:6:"medium";a:3:{s:4:"file";s:18:"homebg-300x154.jpg";s:5:"width";s:3:"300";s:6:"height";s:3:"154";}s:5:"large";a:3:{s:4:"file";s:19:"homebg-1024x528.jpg";s:5:"width";s:4:"1024";s:6:"height";s:3:"528";}s:14:"post-thumbnail";a:3:{s:4:"file";s:19:"homebg-1250x133.jpg";s:5:"width";s:4:"1250";s:6:"height";s:3:"133";}}s:10:"image_meta";a:10:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";}}'),
+(38, 21, '_wp_attachment_is_custom_background', 'bp-default'),
+(39, 9, '_edit_lock', '1535292979:1'),
+(40, 9, '_edit_last', '1'),
+(41, 9, '_wp_page_template', 'default'),
+(42, 7, '_edit_lock', '1535289655:1'),
+(43, 2, '_edit_lock', '1535292818:1'),
+(44, 2, '_edit_last', '1'),
+(45, 28, '_edit_last', '1'),
+(46, 28, '_wp_page_template', 'default'),
+(47, 28, '_edit_lock', '1535293559:1'),
+(52, 34, '_edit_last', '1'),
+(53, 34, '_edit_lock', '1535293440:1'),
+(54, 34, '_wp_trash_meta_status', 'draft'),
+(55, 34, '_wp_trash_meta_time', '1535293468');
 
 -- --------------------------------------------------------
 
@@ -860,7 +938,7 @@ CREATE TABLE IF NOT EXISTS `wp_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
 -- Dumping data for table `wp_posts`
@@ -868,19 +946,45 @@ CREATE TABLE IF NOT EXISTS `wp_posts` (
 
 INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
 (1, 1, '2018-08-26 09:26:36', '2018-08-26 09:26:36', 'Welcome to Vanilla!\r\n\r\nThis site is a social site.', 'Hello everybody!', '', 'publish', 'open', 'open', '', 'hello-world', '', '', '2018-08-26 10:45:55', '2018-08-26 10:45:55', '', 0, 'http://localhost:10086/?p=1', 0, 'post', '', 1),
-(2, 1, '2018-08-26 09:26:36', '2018-08-26 09:26:36', 'This is an example page. It''s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\n\n<blockquote>Hi there! I''m a bike messenger by day, aspiring actor by night, and this is my blog. I live in Los Angeles, have a great dog named Jack, and I like pi&#241;a coladas. (And gettin'' caught in the rain.)</blockquote>\n\n...or something like this:\n\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickies to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\n\nAs a new WordPress user, you should go to <a href="http://localhost:10086/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'publish', 'open', 'open', '', 'sample-page', '', '', '2018-08-26 09:26:36', '2018-08-26 09:26:36', '', 0, 'http://localhost:10086/?page_id=2', 0, 'page', '', 0),
+(2, 1, '2018-08-26 09:26:36', '2018-08-26 09:26:36', 'This is an example page. It''s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I''m a bike messenger by day, aspiring actor by night, and this is my blog. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin'' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickies to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href="http://localhost:10086/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'publish', 'open', 'open', '', 'sample-page', '', '', '2018-08-26 14:13:38', '2018-08-26 14:13:38', '', 0, 'http://localhost:10086/?page_id=2', 0, 'page', '', 0),
 (3, 1, '2018-08-26 09:26:45', '0000-00-00 00:00:00', '', 'Auto Draft', '', 'auto-draft', 'open', 'open', '', '', '', '', '2018-08-26 09:26:45', '0000-00-00 00:00:00', '', 0, 'http://localhost:10086/?p=3', 0, 'post', '', 0),
 (4, 1, '2018-08-26 09:29:57', '0000-00-00 00:00:00', '', 'Auto Draft', '', 'auto-draft', 'open', 'open', '', '', '', '', '2018-08-26 09:29:57', '0000-00-00 00:00:00', '', 0, 'http://localhost:10086/?page_id=4', 0, 'page', '', 0),
 (5, 1, '2018-08-26 09:34:32', '0000-00-00 00:00:00', '', 'Auto Draft', '', 'auto-draft', 'open', 'open', '', '', '', '', '2018-08-26 09:34:32', '0000-00-00 00:00:00', '', 0, 'http://localhost:10086/?p=5', 0, 'post', '', 0),
 (6, 1, '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 'Members', '', 'publish', 'closed', 'closed', '', 'members', '', '', '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 0, 'http://localhost:10086/?page_id=6', 0, 'page', '', 0),
 (7, 1, '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 'Activity', '', 'publish', 'closed', 'closed', '', 'activity', '', '', '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 0, 'http://localhost:10086/?page_id=7', 0, 'page', '', 0),
 (8, 1, '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 'Groups', '', 'publish', 'closed', 'closed', '', 'groups', '', '', '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 0, 'http://localhost:10086/?page_id=8', 0, 'page', '', 0),
-(9, 1, '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 'Forums', '', 'publish', 'closed', 'closed', '', 'forums', '', '', '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 0, 'http://localhost:10086/?page_id=9', 0, 'page', '', 0),
+(9, 1, '2018-08-26 09:36:22', '2018-08-26 09:36:22', 'This is forums page.', 'Forums', '', 'publish', 'closed', 'closed', '', 'forums', '', '', '2018-08-26 14:24:45', '2018-08-26 14:24:45', '', 0, 'http://localhost:10086/?page_id=9', 0, 'page', '', 0),
 (10, 1, '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 'Register', '', 'publish', 'closed', 'closed', '', 'register', '', '', '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 0, 'http://localhost:10086/?page_id=10', 0, 'page', '', 0),
-(11, 1, '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 'Activate', '', 'publish', 'closed', 'closed', '', 'activate', '', '', '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 0, 'http://localhost:10086/?page_id=11', 0, 'page', '', 0),
+(11, 1, '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 'Activate', '', 'publish', 'closed', 'closed', '', 'activate', '', '', '2018-08-26 14:24:50', '2018-08-26 14:24:50', '', 0, 'http://localhost:10086/?page_id=11', 0, 'page', '', 0),
 (12, 1, '2018-08-26 09:26:36', '2018-08-26 09:26:36', 'Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!', 'Hello world!', '', 'inherit', 'open', 'open', '', '1-revision', '', '', '2018-08-26 09:26:36', '2018-08-26 09:26:36', '', 1, 'http://localhost:10086/archives/12', 0, 'revision', '', 0),
 (13, 1, '2018-08-26 10:45:51', '2018-08-26 10:45:51', 'Welcome to Vanilla!\r\n\r\nThis site is a social site.', 'Hello everybody!', '', 'inherit', 'open', 'open', '', '1-revision-2', '', '', '2018-08-26 10:45:51', '2018-08-26 10:45:51', '', 1, 'http://localhost:10086/archives/13', 0, 'revision', '', 0),
-(14, 1, '2018-08-26 11:43:32', '2018-08-26 11:43:32', '', 'mov_bbb', '', 'inherit', 'open', 'open', '', 'mov_bbb', '', '', '2018-08-26 11:43:32', '2018-08-26 11:43:32', '', 0, 'http://localhost:10086/wp-content/uploads/2018/08/mov_bbb.mp4', 0, 'attachment', 'video/mp4', 0);
+(14, 1, '2018-08-26 11:43:32', '2018-08-26 11:43:32', '', 'mov_bbb', '', 'inherit', 'open', 'open', '', 'mov_bbb', '', '', '2018-08-26 11:43:32', '2018-08-26 11:43:32', '', 0, 'http://localhost:10086/wp-content/uploads/2018/08/mov_bbb.mp4', 0, 'attachment', 'video/mp4', 0),
+(15, 1, '2018-08-26 12:27:43', '2018-08-26 12:27:43', 'http://localhost:10086/wp-content/uploads/2018/08/blog-3.jpg', 'blog-3.jpg', '', 'inherit', 'open', 'open', '', 'blog-3-jpg', '', '', '2018-08-26 12:27:43', '2018-08-26 12:27:43', '', 0, 'http://localhost:10086/wp-content/uploads/2018/08/blog-3.jpg', 0, 'attachment', 'image/jpeg', 0),
+(16, 1, '2018-08-26 12:28:29', '2018-08-26 12:28:29', 'http://localhost:10086/wp-content/uploads/2018/08/room1.jpg', 'room1.jpg', '', 'inherit', 'open', 'open', '', 'room1-jpg', '', '', '2018-08-26 12:28:29', '2018-08-26 12:28:29', '', 0, 'http://localhost:10086/wp-content/uploads/2018/08/room1.jpg', 0, 'attachment', 'image/jpeg', 0),
+(17, 1, '2018-08-26 12:30:23', '2018-08-26 12:30:23', 'http://localhost:10086/wp-content/uploads/2018/08/1.jpg', '1.jpg', '', 'inherit', 'open', 'open', '', '1-jpg', '', '', '2018-08-26 12:30:23', '2018-08-26 12:30:23', '', 0, 'http://localhost:10086/wp-content/uploads/2018/08/1.jpg', 0, 'attachment', 'image/jpeg', 0),
+(18, 1, '2018-08-26 12:31:34', '2018-08-26 12:31:34', 'http://localhost:10086/wp-content/uploads/2018/08/pf4.jpg', 'pf4.jpg', '', 'inherit', 'open', 'open', '', 'pf4-jpg', '', '', '2018-08-26 12:31:34', '2018-08-26 12:31:34', '', 0, 'http://localhost:10086/wp-content/uploads/2018/08/pf4.jpg', 0, 'attachment', 'image/jpeg', 0),
+(19, 1, '2018-08-26 12:33:25', '2018-08-26 12:33:25', 'http://localhost:10086/wp-content/uploads/2018/08/pf8.jpg', 'pf8.jpg', '', 'inherit', 'open', 'open', '', 'pf8-jpg', '', '', '2018-08-26 12:33:25', '2018-08-26 12:33:25', '', 0, 'http://localhost:10086/wp-content/uploads/2018/08/pf8.jpg', 0, 'attachment', 'image/jpeg', 0),
+(20, 1, '2018-08-26 12:36:32', '2018-08-26 12:36:32', 'http://localhost:10086/wp-content/uploads/2018/08/pf81.jpg', 'pf81.jpg', '', 'inherit', 'open', 'open', '', 'pf81-jpg', '', '', '2018-08-26 12:36:32', '2018-08-26 12:36:32', '', 0, 'http://localhost:10086/wp-content/uploads/2018/08/pf81.jpg', 0, 'attachment', 'image/jpeg', 0),
+(21, 1, '2018-08-26 12:39:14', '2018-08-26 12:39:14', 'http://localhost:10086/wp-content/uploads/2018/08/homebg.jpg', 'homebg.jpg', '', 'inherit', 'open', 'open', '', 'homebg-jpg', '', '', '2018-08-26 12:39:14', '2018-08-26 12:39:14', '', 0, 'http://localhost:10086/wp-content/uploads/2018/08/homebg.jpg', 0, 'attachment', 'image/jpeg', 0),
+(22, 1, '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 'Forums', '', 'inherit', 'open', 'open', '', '9-revision', '', '', '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 9, 'http://localhost:10086/archives/22', 0, 'revision', '', 0),
+(23, 1, '2018-08-26 13:06:59', '0000-00-00 00:00:00', '', 'Auto Draft', '', 'auto-draft', 'open', 'open', '', '', '', '', '2018-08-26 13:06:59', '0000-00-00 00:00:00', '', 0, 'http://localhost:10086/?p=23', 0, 'post', '', 0),
+(24, 1, '2018-08-26 13:09:53', '0000-00-00 00:00:00', '', 'Auto Draft', '', 'auto-draft', 'open', 'open', '', '', '', '', '2018-08-26 13:09:53', '0000-00-00 00:00:00', '', 0, 'http://localhost:10086/?page_id=24', 0, 'page', '', 0),
+(25, 1, '2018-08-26 09:26:36', '2018-08-26 09:26:36', 'This is an example page. It''s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\n\n<blockquote>Hi there! I''m a bike messenger by day, aspiring actor by night, and this is my blog. I live in Los Angeles, have a great dog named Jack, and I like pi&#241;a coladas. (And gettin'' caught in the rain.)</blockquote>\n\n...or something like this:\n\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickies to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\n\nAs a new WordPress user, you should go to <a href="http://localhost:10086/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'inherit', 'open', 'open', '', '2-revision', '', '', '2018-08-26 09:26:36', '2018-08-26 09:26:36', '', 2, 'http://localhost:10086/archives/25', 0, 'revision', '', 0),
+(26, 1, '2018-08-26 14:13:06', '2018-08-26 14:13:06', 'This is an example page. It''s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I''m a bike messenger by day, aspiring actor by night, and this is my blog. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin'' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickies to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href="http://localhost:10086/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Contact Us', '', 'inherit', 'open', 'open', '', '2-revision-2', '', '', '2018-08-26 14:13:06', '2018-08-26 14:13:06', '', 2, 'http://localhost:10086/archives/26', 0, 'revision', '', 0),
+(27, 1, '2018-08-26 13:04:47', '2018-08-26 13:04:47', '', 'Forums', '', 'inherit', 'open', 'open', '', '9-revision-2', '', '', '2018-08-26 13:04:47', '2018-08-26 13:04:47', '', 9, 'http://localhost:10086/archives/27', 0, 'revision', '', 0),
+(28, 1, '2018-08-26 14:18:14', '2018-08-26 14:18:14', '', 'Forums', '', 'publish', 'open', 'open', '', 'forum-page', '', '', '2018-08-26 14:28:07', '2018-08-26 14:28:07', '', 0, 'http://localhost:10086/?page_id=28', 0, 'page', '', 1),
+(29, 1, '2018-08-26 14:17:55', '2018-08-26 14:17:55', '', 'Auto Draft', '', 'inherit', 'open', 'open', '', '28-revision', '', '', '2018-08-26 14:17:55', '2018-08-26 14:17:55', '', 28, 'http://localhost:10086/archives/29', 0, 'revision', '', 0),
+(30, 1, '2018-08-26 14:18:11', '2018-08-26 14:18:11', '', 'Forum page', '', 'inherit', 'open', 'open', '', '28-revision-2', '', '', '2018-08-26 14:18:11', '2018-08-26 14:18:11', '', 28, 'http://localhost:10086/archives/30', 0, 'revision', '', 0),
+(31, 1, '2018-08-26 14:16:19', '2018-08-26 14:16:19', 'This is forums page.', 'Forums', '', 'inherit', 'open', 'open', '', '9-revision-3', '', '', '2018-08-26 14:16:19', '2018-08-26 14:16:19', '', 9, 'http://localhost:10086/archives/31', 0, 'revision', '', 0),
+(32, 1, '2018-08-26 14:18:14', '2018-08-26 14:18:14', '', 'Forum page', '', 'inherit', 'open', 'open', '', '28-revision-3', '', '', '2018-08-26 14:18:14', '2018-08-26 14:18:14', '', 28, 'http://localhost:10086/archives/32', 0, 'revision', '', 0),
+(33, 1, '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 'Activate', '', 'inherit', 'open', 'open', '', '11-revision', '', '', '2018-08-26 09:36:22', '2018-08-26 09:36:22', '', 11, 'http://localhost:10086/archives/33', 0, 'revision', '', 0),
+(34, 1, '2018-08-26 14:24:00', '2018-08-26 14:24:00', '', 'Activate', '', 'trash', 'open', 'open', '', 'activate-2', '', '', '2018-08-26 14:24:28', '2018-08-26 14:24:28', '', 0, 'http://localhost:10086/?page_id=34', 0, 'page', '', 0),
+(35, 1, '2018-08-26 14:24:00', '2018-08-26 14:24:00', '', 'Activate', '', 'inherit', 'open', 'open', '', '34-revision', '', '', '2018-08-26 14:24:00', '2018-08-26 14:24:00', '', 34, 'http://localhost:10086/archives/35', 0, 'revision', '', 0),
+(36, 1, '2018-08-26 14:19:14', '2018-08-26 14:19:14', 'This is forums page.', 'Forums', '', 'inherit', 'open', 'open', '', '9-revision-4', '', '', '2018-08-26 14:19:14', '2018-08-26 14:19:14', '', 9, 'http://localhost:10086/archives/36', 0, 'revision', '', 0),
+(37, 1, '2018-08-26 14:21:18', '2018-08-26 14:21:18', '', 'Activate', '', 'inherit', 'open', 'open', '', '11-revision-2', '', '', '2018-08-26 14:21:18', '2018-08-26 14:21:18', '', 11, 'http://localhost:10086/archives/37', 0, 'revision', '', 0),
+(38, 1, '2018-08-26 14:19:23', '2018-08-26 14:19:23', '', 'Discussion Forums', '', 'inherit', 'open', 'open', '', '28-revision-4', '', '', '2018-08-26 14:19:23', '2018-08-26 14:19:23', '', 28, 'http://localhost:10086/archives/38', 0, 'revision', '', 0),
+(39, 1, '2018-08-26 14:25:59', '2018-08-26 14:25:59', '', 'Forums', '', 'inherit', 'open', 'open', '', '28-revision-5', '', '', '2018-08-26 14:25:59', '2018-08-26 14:25:59', '', 28, 'http://localhost:10086/archives/39', 0, 'revision', '', 0),
+(40, 1, '2018-08-26 14:26:26', '2018-08-26 14:26:26', '', 'Forums', '', 'inherit', 'open', 'open', '', '28-revision-6', '', '', '2018-08-26 14:26:26', '2018-08-26 14:26:26', '', 28, 'http://localhost:10086/archives/40', 0, 'revision', '', 0);
 
 -- --------------------------------------------------------
 
@@ -974,7 +1078,7 @@ CREATE TABLE IF NOT EXISTS `wp_usermeta` (
   PRIMARY KEY (`umeta_id`),
   KEY `user_id` (`user_id`),
   KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=79 ;
 
 --
 -- Dumping data for table `wp_usermeta`
@@ -999,11 +1103,11 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (16, 1, 'wp_dashboard_quick_press_last_post_id', '3'),
 (17, 1, 'closedpostboxes_dashboard', 'a:0:{}'),
 (18, 1, 'metaboxhidden_dashboard', 'a:0:{}'),
-(19, 1, 'last_activity', '2018-08-26 12:14:15'),
+(19, 1, 'last_activity', '2018-08-26 14:27:50'),
 (20, 1, 'bp_latest_update', 'a:2:{s:2:"id";s:1:"2";s:7:"content";s:18:"Hi to everyone...?";}'),
 (21, 1, 'bp_favorite_activities', 'a:1:{i:0;s:1:"2";}'),
-(22, 1, 'wp_user-settings', 'm5=o'),
-(23, 1, 'wp_user-settings-time', '1535279236'),
+(22, 1, 'wp_user-settings', 'm5=o&m1=o&m2=o&m3=c&m4=o&editor=tinymce'),
+(23, 1, 'wp_user-settings-time', '1535289672'),
 (24, 2, 'first_name', 'won'),
 (25, 2, 'last_name', ''),
 (26, 2, 'nickname', 'won'),
@@ -1021,7 +1125,44 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (38, 2, 'wp_user_level', '0'),
 (39, 2, 'last_activity', '2018-08-26 11:17:49'),
 (40, 2, 'bp_latest_update', 'a:2:{s:2:"id";s:2:"10";s:7:"content";s:22:"Hi,  I like this site.";}'),
-(41, 2, 'bp_follow_has_notified', 'a:1:{i:0;s:1:"1";}');
+(41, 2, 'bp_follow_has_notified', 'a:1:{i:0;s:1:"1";}'),
+(42, 1, 'managenav-menuscolumnshidden', 'a:4:{i:0;s:11:"link-target";i:1;s:11:"css-classes";i:2;s:3:"xfn";i:3;s:11:"description";}'),
+(43, 1, 'metaboxhidden_nav-menus', 'a:2:{i:0;s:8:"add-post";i:1;s:12:"add-post_tag";}'),
+(44, 1, 'plugins_last_view', 'all'),
+(45, 1, 'closedpostboxes_nav-menus', 'a:0:{}'),
+(46, 3, 'first_name', 'harry'),
+(47, 3, 'last_name', 'benit'),
+(48, 3, 'nickname', 'harry benit'),
+(49, 3, 'description', 'I am a dancer from hongkong.'),
+(50, 3, 'rich_editing', 'true'),
+(51, 3, 'comment_shortcuts', 'false'),
+(52, 3, 'admin_color', 'fresh'),
+(53, 3, 'use_ssl', '0'),
+(54, 3, 'show_admin_bar_front', 'true'),
+(55, 3, 'show_admin_bar_admin', 'false'),
+(56, 3, 'aim', ''),
+(57, 3, 'yim', ''),
+(58, 3, 'jabber', ''),
+(59, 3, 'wp_capabilities', 'a:1:{s:10:"subscriber";s:1:"1";}'),
+(60, 3, 'wp_user_level', '0'),
+(61, 3, 'last_activity', '2018-08-26 13:39:17'),
+(62, 3, 'bp_latest_update', 'a:2:{s:2:"id";s:2:"15";s:7:"content";s:25:"Hi, i am a harry\nhelp me!";}'),
+(63, 4, 'first_name', 'Adrian'),
+(64, 4, 'last_name', ''),
+(65, 4, 'nickname', 'Adrian'),
+(66, 4, 'description', 'I am a programmer from UK.'),
+(67, 4, 'rich_editing', 'true'),
+(68, 4, 'comment_shortcuts', 'false'),
+(69, 4, 'admin_color', 'fresh'),
+(70, 4, 'use_ssl', '0'),
+(71, 4, 'show_admin_bar_front', 'true'),
+(72, 4, 'show_admin_bar_admin', 'false'),
+(73, 4, 'aim', ''),
+(74, 4, 'yim', ''),
+(75, 4, 'jabber', ''),
+(76, 4, 'wp_capabilities', 'a:1:{s:11:"contributor";s:1:"1";}'),
+(77, 4, 'wp_user_level', '1'),
+(78, 4, 'last_activity', '2018-08-26 14:31:07');
 
 -- --------------------------------------------------------
 
@@ -1043,7 +1184,7 @@ CREATE TABLE IF NOT EXISTS `wp_users` (
   PRIMARY KEY (`ID`),
   KEY `user_login_key` (`user_login`),
   KEY `user_nicename` (`user_nicename`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `wp_users`
@@ -1051,7 +1192,9 @@ CREATE TABLE IF NOT EXISTS `wp_users` (
 
 INSERT INTO `wp_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES
 (1, 'admin', '$P$BYMqU.iNh94m2nZoZNjETVwgAT0iUR1', 'admin', 'mingOK424@hotmail.com', '', '2018-08-26 09:26:34', '', 0, 'ming ming'),
-(2, 'won', '$P$BTmymqCjbduUvT4/x8RB6IhIB8Ozpp.', 'won', 'wonwon@yahoo.com', '', '2018-08-26 10:50:31', '', 0, 'won');
+(2, 'won', '$P$BTmymqCjbduUvT4/x8RB6IhIB8Ozpp.', 'won', 'wonwon@yahoo.com', '', '2018-08-26 10:50:31', '', 0, 'won'),
+(3, 'harry', '$P$BaYghETRuiSEP3RI5LuACZay7aLQlr0', 'harry', 'harrybenit@hotmail.com', '', '2018-08-26 12:51:32', '', 0, 'harry benit'),
+(4, 'Adrian', '$P$B2W1r.jpMqorWoo/R/ypxIouOxMNnw0', 'adrian', 'adrian123@hotmail.com', '', '2018-08-26 14:30:20', '', 0, 'Adrian');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
